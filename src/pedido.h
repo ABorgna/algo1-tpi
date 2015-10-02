@@ -7,35 +7,35 @@
 
 class Pedido {
 
-	public:
+    public:
 
-		Pedido();
-		Pedido(const int n, const Empleado e, const vector<Combo> cs);
+        Pedido();
+        Pedido(const int n, const Empleado e, const vector<Combo> cs);
 
-		int             numeroP() const;
-		Empleado        atendioP() const;
-		vector<Combo>    combosP() const;
+        int             numeroP() const;
+        Empleado        atendioP() const;
+        vector<Combo>    combosP() const;
 
                 Energia dificultadP() const;
 
-		void  agregarComboP(const Combo c);
-		void  anularComboP(int i);
-		void  cambiarBebidaComboP(const Bebida b, int i);
-		void  elMezcladitoP();
+        void  agregarComboP(const Combo c);
+        void  anularComboP(int i);
+        void  cambiarBebidaComboP(const Bebida b, int i);
+        void  elMezcladitoP();
 
-		void mostrar(std::ostream& os) const;
-		void guardar(std::ostream& os) const;
-		void cargar (std::istream& is);
+        void mostrar(std::ostream& os) const;
+        void guardar(std::ostream& os) const;
+        void cargar (std::istream& is);
 
-		bool operator==(const Pedido& otroPedido) const;
+        bool operator==(const Pedido& otroPedido) const;
 
-	private:
+    private:
 
-                vector<Combo> _combos;
-                Empleado     _atendio;
-                int          _numero;
+        vector<Combo> _combos;
+        Empleado     _atendio;
+        int          _numero;
 
-	        enum {ENCABEZADO_ARCHIVO = 'P'};
+        enum {ENCABEZADO_ARCHIVO = 'P'};
 
 };
 

@@ -53,7 +53,7 @@ void MenuPrincipal()
             {
                 limpiarPantalla();
                 MenuCombo();
-			}
+            }
                 break;
             case 2:
             {
@@ -929,11 +929,11 @@ void LeerArchivoParaEscribir(ofstream &archivo)
 
 Combo MenuCrearCombo()
 {
-	Energia energia;
-	int hamburguesa;
-	int bebida;
+    Energia energia;
+    int hamburguesa;
+    int bebida;
 
-	cout << "Agregando un nuevo combo" << endl<< endl;
+    cout << "Agregando un nuevo combo" << endl<< endl;
 
     mostrarHamburguesasYBebidas();
 
@@ -952,32 +952,32 @@ Combo MenuCrearCombo()
 
     cout << "Bebida [0/" << MaxB << "] :";
     cin >> bebida;
-	while (bebida > MaxB)
+    while (bebida > MaxB)
     {
         cout << "Por favor ingrese un valor correcto para la Bebida[0/" << MaxB << "] :";
         cin >> bebida;
     }
 
-	cout << "Energia = ";
-	cin >> energia;
+    cout << "Energia = ";
+    cin >> energia;
 
-	cout << endl;
+    cout << endl;
 
     Combo combo = Combo(Bebidas[bebida],Hamburguesas[hamburguesa],energia);
 
     //cout << "El Combo creado es: " << endl;
     //cout << combo;
 
-	return combo;
+    return combo;
 }
 
 Combo MenuCrearComboAPedidoDeLocal()
 {
-	Energia energia;
-	int hamburguesa;
-	int bebida;
+    Energia energia;
+    int hamburguesa;
+    int bebida;
 
-	cout << "Agregando un nuevo combo" << endl<< endl;
+    cout << "Agregando un nuevo combo" << endl<< endl;
 
     mostrarHamburguesasYBebidasDeLocal();
 
@@ -996,23 +996,23 @@ Combo MenuCrearComboAPedidoDeLocal()
 
     cout << "Bebida [0/" << nuevoLocal.bebidasDelLocalL().size()-1 << "] :";
     cin >> bebida;
-	while (bebida > nuevoLocal.bebidasDelLocalL().size()-1)
+    while (bebida > nuevoLocal.bebidasDelLocalL().size()-1)
     {
         cout << "Por favor ingrese un valor correcto para la Bebida[0/" << nuevoLocal.bebidasDelLocalL().size()-1 << "] :";
         cin >> bebida;
     }
 
-	cout << "Energia = ";
-	cin >> energia;
+    cout << "Energia = ";
+    cin >> energia;
 
-	cout << endl;
+    cout << endl;
 
     Combo combo = Combo(nuevoLocal.bebidasDelLocalL()[bebida],nuevoLocal.sandwichesDelLocalL()[hamburguesa],energia);
 
     //cout << "El Combo creado es: " << endl;
     //cout << combo;
 
-	return combo;
+    return combo;
 }
 
 
@@ -1023,31 +1023,31 @@ Pedido MenuCrearPedido()
 
     vector<Combo> Combos;
 
-	int nro = 0;
-	Empleado empleado;
+    int nro = 0;
+    Empleado empleado;
 
-	cout << "Creando un pedido nuevo: "<< endl<< endl;
+    cout << "Creando un pedido nuevo: "<< endl<< endl;
 
-	cout << "Numero de pedido = ";
-	cin >> nro;
+    cout << "Numero de pedido = ";
+    cin >> nro;
 
-	cout << "Empleado = ";
-	cin >> empleado;
+    cout << "Empleado = ";
+    cin >> empleado;
 
-	cout << "Combos:" << endl;
-	while (otroCombo)
-	{
-	    cout << endl;
-		Combos.push_back(MenuCrearCombo());
-		cout << endl;
-		cout << "Agregar otro combo? [s/n]";
-		cin >> opt;
-		otroCombo = (opt == "s");
-		limpiarPantalla();
-		mostrarMenuAgregacionComboAPedido(nro, empleado, Combos);
-	}
+    cout << "Combos:" << endl;
+    while (otroCombo)
+    {
+        cout << endl;
+        Combos.push_back(MenuCrearCombo());
+        cout << endl;
+        cout << "Agregar otro combo? [s/n]";
+        cin >> opt;
+        otroCombo = (opt == "s");
+        limpiarPantalla();
+        mostrarMenuAgregacionComboAPedido(nro, empleado, Combos);
+    }
 
-	return Pedido(nro, empleado, Combos);
+    return Pedido(nro, empleado, Combos);
 }
 
 
@@ -1058,22 +1058,22 @@ Pedido MenuCrearPedidoDeLocal()
 
     vector<Combo> Combos;
 
-	int nro;
-	int empleado;
+    int nro;
+    int empleado;
 
-	cout << "Creando un pedido nuevo para el Local: "<< endl<< endl;
+    cout << "Creando un pedido nuevo para el Local: "<< endl<< endl;
 
     cout << "La cantidad de ventas total del local es: " << nuevoLocal.ventasL().size() << endl;
-	cout << "Numero de pedido = ";
-	cin >> nro;
+    cout << "Numero de pedido = ";
+    cin >> nro;
 
     cout << "Los empleados del local son: " << endl << endl;
     for (int i = 0; i < nuevoLocal.empleadosL().size(); i++)
     {
         cout << "| "<< i <<" | " << nuevoLocal.empleadosL()[i] << " |" << endl;
     }
-	cout << "Ingrese el numero de empleado que realiza la venta[0/" << nuevoLocal.empleadosL().size() -1 << "] :";
-	cin >> empleado;
+    cout << "Ingrese el numero de empleado que realiza la venta[0/" << nuevoLocal.empleadosL().size() -1 << "] :";
+    cin >> empleado;
 
     while (empleado > nuevoLocal.empleadosL().size() -1)
     {
@@ -1081,33 +1081,33 @@ Pedido MenuCrearPedidoDeLocal()
         cin >> empleado;
     }
 
-	cout << "Combos:" << endl;
-	while (otroCombo)
-	{
-	    cout << endl;
-		Combos.push_back(MenuCrearComboAPedidoDeLocal());
-		cout << endl;
-		cout << "Agregar otro combo? [s/n]";
-		cin >> opt;
-		otroCombo = (opt == "s");
-		limpiarPantalla();
-		mostrarMenuAgregacionComboAPedido(nro, nuevoLocal.empleadosL()[empleado], Combos);
-	}
+    cout << "Combos:" << endl;
+    while (otroCombo)
+    {
+        cout << endl;
+        Combos.push_back(MenuCrearComboAPedidoDeLocal());
+        cout << endl;
+        cout << "Agregar otro combo? [s/n]";
+        cin >> opt;
+        otroCombo = (opt == "s");
+        limpiarPantalla();
+        mostrarMenuAgregacionComboAPedido(nro, nuevoLocal.empleadosL()[empleado], Combos);
+    }
 
-	return Pedido(nro, nuevoLocal.empleadosL()[empleado], Combos);
+    return Pedido(nro, nuevoLocal.empleadosL()[empleado], Combos);
 }
 
 void mostrarMenuAgregacionComboAPedido(int nro, Empleado empleado, vector<Combo> combos)
 {
     cout << "Numero de pedido = " << nro << endl;
-	cout << "Empleado = " << empleado << endl;
-	cout << "Combos : " << endl;
+    cout << "Empleado = " << empleado << endl;
+    cout << "Combos : " << endl;
 
-	for (int i = 0; i < combos.size(); i++)
-	{
-	    combos[i].mostrar(cout);
-	    cout << endl;
-	}
+    for (int i = 0; i < combos.size(); i++)
+    {
+        combos[i].mostrar(cout);
+        cout << endl;
+    }
 }
 
 Local MenuCrearLocal()

@@ -6,28 +6,28 @@
 
 class Combo {
 
-	public:
+    public:
 
-		Combo();
-		Combo(const Bebida b, const Hamburguesa h, const Energia d);
+        Combo();
+        Combo(const Bebida b, const Hamburguesa h, const Energia d);
 
-		Bebida      bebidaC() const;
-		Hamburguesa sandwichC() const;
-		Energia     dificultadC() const;
+        Bebida      bebidaC() const;
+        Hamburguesa sandwichC() const;
+        Energia     dificultadC() const;
 
-		void mostrar(std::ostream& os) const;
-		void guardar(std::ostream& os) const;
-		void cargar (std::istream& is);
+        void mostrar(std::ostream& os) const;
+        void guardar(std::ostream& os) const;
+        void cargar (std::istream& is);
 
-		bool operator==(const Combo& otroCombo) const;
+        bool operator==(const Combo& otroCombo) const;
 
-	private:
+    private:
 
-		Bebida      _bebida;
-		Hamburguesa _sandwich;
-		Energia     _dificultad;
+        Bebida      _bebida;
+        Hamburguesa _sandwich;
+        Energia     _dificultad;
 
-		enum {ENCABEZADO_ARCHIVO = 'C'};
+        enum {ENCABEZADO_ARCHIVO = 'C'};
 
 };
 

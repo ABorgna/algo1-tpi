@@ -28,8 +28,8 @@ class Local{
 
 
         void mostrar(std::ostream& os) const;
-	void guardar(std::ostream& os) const;
-	void cargar (std::istream& is);
+        void guardar(std::ostream& os) const;
+        void cargar (std::istream& is);
 
     private:
         vector< pair <Hamburguesa,Cantidad> > _sandwiches;
