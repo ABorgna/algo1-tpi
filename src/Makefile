@@ -5,7 +5,7 @@ clean:
 	rm *.o
 	rm fatFood
 
-fatFood: fatFood.cpp interfaz.cpp local.o pedido.o combo.o
+fatFood: fatFood.cpp interfaz.cpp local.o pedido.o combo.o aux.o
 	g++ -std=gnu++11 -o fatFood $^
 
 %.o: %.cpp

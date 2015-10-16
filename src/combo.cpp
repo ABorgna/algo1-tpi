@@ -49,3 +49,32 @@ std::ostream & operator<<(std::ostream & os,const Bebida & b){
     // Leandro
 }
 
+std::istream & operator>>(std::istream & is, Combo & c){
+    c.cargar(is);
+    return is;
+}
+
+std::istream & operator>>(std::istream & is, Hamburguesa & c){
+    string s;
+    is >> s;
+    for(int i=0; i<MaxH; i++){
+        if(HAMBURGUESA_STR[i] == s){
+            c = (Hamburguesa)i;
+            break;
+        }
+    }
+    return is;
+}
+
+std::istream & operator>>(std::istream & is, Bebida & b){
+    string s;
+    is >> s;
+    for(int i=0; i<MaxB; i++){
+        if(BEBIDA_STR[i] == s){
+            b = (Bebida)i;
+            break;
+        }
+    }
+    return is;
+}
+

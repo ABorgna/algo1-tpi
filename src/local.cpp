@@ -107,6 +107,11 @@ Empleado Local::elVagonetaL() const{
 }
 
 void Local::guardar(std::ostream& os) const{
+    os << "{ " << ENCABEZADO_ARCHIVO << " "
+       << _bebidas << " "
+       << _sandwiches << " "
+       << _empleados << " "
+       << _ventas << " }";
 }
 
 void Local::mostrar(std::ostream& os) const{
@@ -119,5 +124,10 @@ void Local::cargar (std::istream& is){
 
 std::ostream & operator<<(std::ostream & os,const Local & l){
     // Leandro
+}
+
+std::istream & operator>>(std::istream & is, Local & l){
+    l.cargar(is);
+    return is;
 }
 

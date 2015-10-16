@@ -49,7 +49,17 @@ void Pedido::guardar(std::ostream& os) const{
 }
 
 void Pedido::cargar (std::istream& is){
-    // Agustin
+    is.ignore(0xff,'{'); // "  {"
+    trimIS(is);
+
+    if(is.get() != ENCABEZADO_ARCHIVO){
+        throw std::invalid_argument("Encabezado inválido");
+    }
+    is >> _numero
+       >> _atendio
+       >> _combos;
+
+    is.ignore(0xff,'}'); // "  }"
 }
 
 bool Pedido::operator==(const Pedido& otroPedido) const{
@@ -77,5 +87,10 @@ int countSandwichesP(const Pedido& p, Hamburguesa s){
 
 std::ostream & operator<<(std::ostream & os,const Pedido& p){
     // Alejo
+}
+
+std::istream & operator>>(std::istream & is, Pedido & p){
+    p.cargar(is);
+    return is;
 }
 

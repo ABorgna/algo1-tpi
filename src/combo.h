@@ -1,8 +1,9 @@
 #ifndef COMBO_H_INCLUDED
 #define COMBO_H_INCLUDED
 
-#include "tipos.h"
 #include <vector>
+#include "tipos.h"
+#include "aux.h"
 
 class Combo {
 
@@ -36,5 +37,8 @@ std::ostream & operator<<(std::ostream & os,const Combo & c);
 std::ostream & operator<<(std::ostream & os,const Hamburguesa & c);
 std::ostream & operator<<(std::ostream & os,const Bebida & c);
 
+std::istream & operator>>(std::istream & is, Combo & c);
+std::istream & operator>>(std::istream & is, Hamburguesa & c);
+std::istream & operator>>(std::istream & is, Bebida & c);
 
 #endif // COMBO_H_INCLUDED

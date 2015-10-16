@@ -3,6 +3,9 @@
 
 #include <vector>
 #include "pedido.h"
+#include "aux.h"
+#include "combo.h"
+#include "pedido.h"
 
 class Local{
     public:
@@ -42,5 +45,6 @@ class Local{
 };
 
 std::ostream & operator<<(std::ostream & os,const Local & c);
+std::istream & operator>>(std::istream & is, Local & l);
 
 #endif // LOCAL_H_INCLUDED

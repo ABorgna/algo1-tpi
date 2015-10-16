@@ -2,6 +2,7 @@
 #define PEDIDO_H_INCLUDED
 
 #include <vector>
+#include <stdexcept>
 #include "tipos.h"
 #include "combo.h"
 
@@ -45,5 +46,6 @@ int countSandwichesP(const Pedido&, Hamburguesa);
 
 // Definirlo usando mostrar, para poder usar << con este tipo.
 std::ostream & operator<<(std::ostream & os,const Pedido & p);
+std::istream & operator>>(std::istream & is, Pedido & p);
 
 #endif // PEDIDO_H_INCLUDED

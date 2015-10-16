@@ -12,6 +12,11 @@ typedef string Empleado;
 typedef int Energia;
 typedef int Cantidad;
 
+static const char* BEBIDA_STR[] = 
+    {"PestiCola","FalsaNaranja","SeVeNada", "AguaConGags","AguaSinGags"};
+static const char* HAMBURGUESA_STR[] = 
+    {"McGyver","CukiQueFresco","McPato","BigMacabra"};
+
 enum Bebida{PestiCola, FalsaNaranja, SeVeNada, AguaConGags, AguaSinGags};
 enum Hamburguesa{McGyver, CukiQueFresco, McPato, BigMacabra};
 
