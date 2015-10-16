@@ -107,7 +107,7 @@ Empleado Local::elVagonetaL() const{
 }
 
 void Local::guardar(std::ostream& os) const{
-    os << "{ " << ENCABEZADO_ARCHIVO << " "
+    os << "{ " << (char)ENCABEZADO_ARCHIVO << " "
        << _bebidas << " "
        << _sandwiches << " "
        << _empleados << " "
