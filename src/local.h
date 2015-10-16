@@ -40,5 +40,7 @@ class Local{
         enum {ENCABEZADO_ARCHIVO = 'L'};
 
 };
-#endif // LOCAL_H_INCLUDED
+
 std::ostream & operator<<(std::ostream & os,const Local & c);
+
+#endif // LOCAL_H_INCLUDED

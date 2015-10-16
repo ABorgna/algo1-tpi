@@ -39,6 +39,10 @@ class Pedido {
 
 };
 
+// Auxiliares
+int countBebidasP(const Pedido&, Bebida);
+int countSandwichesP(const Pedido&, Hamburguesa);
+
 // Definirlo usando mostrar, para poder usar << con este tipo.
 std::ostream & operator<<(std::ostream & os,const Pedido & p);
 

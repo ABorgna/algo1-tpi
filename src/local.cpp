@@ -1,11 +1,21 @@
 #include "local.h"
 #include <string.h>
+#include <algorithm>
+
 Local::Local(){
     // Leandro
 }
 
-Local::Local(const vector< pair <Bebida,Cantidad> > bs, const vector< pair <Hamburguesa,Cantidad> > hs, const vector<Empleado> es){
-    // Agustin
+Local::Local(const vector< pair<Bebida,Cantidad> > bs,
+             const vector< pair<Hamburguesa,Cantidad> > hs,
+             const vector<Empleado> es) {
+    _bebidas = bs;
+    _sandwiches = hs;
+
+    _empleados.reserve(es.size());
+    for(auto &i : es){
+        _empleados.push_back(pair<Empleado,Energia>(i,100));
+    }
 }
 
 Cantidad Local::stockBebidasL(const Bebida b) const{
@@ -21,7 +31,12 @@ vector<Bebida>       Local::bebidasDelLocalL() const{
 }
 
 vector<Hamburguesa>  Local::sandwichesDelLocalL() const{
-    // Agustin
+    vector<Hamburguesa> v;
+    v.reserve(_sandwiches.size());
+    for(auto &i : _sandwiches){
+        v.push_back(i.first);
+    }
+    return v;
 }
 
 vector<Empleado>     Local::empleadosL() const{
@@ -37,7 +52,7 @@ Energia  Local::energiaEmpleadoL(const Empleado e) const{
 }
 
 vector<Pedido>       Local::ventasL() const{
-    // Agustin
+    return _ventas;
 }
 
 vector<Empleado> Local::candidatosAEmpleadosDelMesL() const{
@@ -53,7 +68,30 @@ void Local::sancionL(const Empleado e, const Energia n){
 }
 
 void Local::anularPedidoL(int n){
-    // Agustin
+    auto esNumeroN = [n](Pedido p){return p.numeroP() == n;};
+    auto itPedido = find_if(_ventas.begin(),_ventas.end(),esNumeroN);
+
+    // Modificar energia y stock
+    for(auto &empleado : _empleados){
+        if(empleado.first == itPedido->atendioP())
+            empleado.second += itPedido->dificultadP();
+    }
+    for(auto &bebida : _bebidas){
+        bebida.second += countBebidasP(*itPedido,bebida.first);
+    }
+    for(auto &sandwich : _sandwiches){
+        sandwich.second += countSandwichesP(*itPedido,sandwich.first);
+    }
+
+    // Cambiar los numeros de pedido
+    for(Pedido &pedido : _ventas){
+        if(pedido.numeroP() > n)
+            pedido = Pedido(pedido.numeroP()+1,
+                            pedido.atendioP(),
+                            pedido.combosP());
+    }
+
+    _ventas.erase(itPedido);
 }
 
 void Local::agregarComboAlPedidoL(const Combo c, int n){
@@ -69,7 +107,6 @@ Empleado Local::elVagonetaL() const{
 }
 
 void Local::guardar(std::ostream& os) const{
-    // Agustin
 }
 
 void Local::mostrar(std::ostream& os) const{

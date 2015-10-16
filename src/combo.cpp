@@ -1,8 +1,7 @@
 #include "combo.h"
 #include <string.h>
-Combo::Combo(){
-    // Agustin
-}
+
+Combo::Combo() : Combo(PestiCola,McGyver,0) {}
 
 Combo::Combo(const Bebida b, const Hamburguesa h, const Energia d ){
     // Sofia
@@ -17,7 +16,7 @@ Hamburguesa Combo::sandwichC() const{
 }
 
 Energia     Combo::dificultadC() const{
-    // Agustin
+    return _dificultad;
 }
 
 void Combo::mostrar(std::ostream& os) const{
@@ -33,7 +32,9 @@ void Combo::cargar (std::istream& is){
 }
 
 bool Combo::operator==(const Combo& otroCombo) const{
-    // Agustin
+    return _sandwich == otroCombo.sandwichC() &&
+           _bebida == otroCombo.bebidaC() &&
+           _dificultad == otroCombo.dificultadC();
 }
 
 std::ostream & operator<<(std::ostream & os,const Combo & c){
