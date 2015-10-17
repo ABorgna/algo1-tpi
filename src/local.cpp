@@ -86,7 +86,7 @@ void Local::anularPedidoL(int n){
     // Cambiar los numeros de pedido
     for(Pedido &pedido : _ventas){
         if(pedido.numeroP() > n)
-            pedido = Pedido(pedido.numeroP()+1,
+            pedido = Pedido(pedido.numeroP()-1,
                             pedido.atendioP(),
                             pedido.combosP());
     }
