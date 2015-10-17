@@ -58,3 +58,4 @@ std::istream & operator>>(std::istream & is, pair<T,Q> & p){
 }
 
 #endif // AUX_H_INCLUDED
+
