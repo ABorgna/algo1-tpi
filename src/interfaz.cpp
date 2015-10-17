@@ -341,7 +341,7 @@ void MenuPedido()
         }
         case 6:
         {
-            uint nroCombo;
+            int nroCombo;
             limpiarPantalla();
 
             if (!seCreoElPedido)
@@ -364,7 +364,7 @@ void MenuPedido()
         }
         case 7:
         {
-            uint nroCombo;
+            int nroCombo;
             int nuevaBebida;
             limpiarPantalla();
 
@@ -631,7 +631,7 @@ void MenuLocal()
                 break;
             }
             cout << "Las bebidas del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.bebidasDelLocalL().size(); i++)
+            for (int i = 0; i < nuevoLocal.bebidasDelLocalL().size(); i++)
             {
                 cout << nuevoLocal.bebidasDelLocalL()[i] << endl;
             }
@@ -650,7 +650,7 @@ void MenuLocal()
                 break;
             }
             cout << "Las hamburguesas del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.sandwichesDelLocalL().size(); i++)
+            for (int i = 0; i < nuevoLocal.sandwichesDelLocalL().size(); i++)
             {
                 cout << nuevoLocal.sandwichesDelLocalL()[i] << endl;
             }
@@ -669,7 +669,7 @@ void MenuLocal()
                 break;
             }
             cout << "Los empleados del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.empleadosL().size(); i++)
+            for (int i = 0; i < nuevoLocal.empleadosL().size(); i++)
             {
                 cout << nuevoLocal.empleadosL()[i] << endl;
             }
@@ -688,7 +688,7 @@ void MenuLocal()
                 break;
             }
             cout << "Los ex-empleados del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.desempleadosL().size(); i++)
+            for (int i = 0; i < nuevoLocal.desempleadosL().size(); i++)
             {
                 cout << nuevoLocal.desempleadosL()[i] << endl;
             }
@@ -700,14 +700,14 @@ void MenuLocal()
         case 11:
         {
             limpiarPantalla();
-            uint empleado;
+            int empleado;
             if (!seCreoElLocal)
             {
                 cout << "ERROR: No se creo ningun local aun";
                 break;
             }
             cout << "Los empleados del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.empleadosL().size(); i++)
+            for (int i = 0; i < nuevoLocal.empleadosL().size(); i++)
             {
                 cout << i << " :" << nuevoLocal.empleadosL()[i] << endl;
             }
@@ -737,7 +737,7 @@ void MenuLocal()
                 break;
             }
             cout << "Las ventas del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.ventasL().size(); i++)
+            for (int i = 0; i < nuevoLocal.ventasL().size(); i++)
             {
                 cout << nuevoLocal.ventasL()[i] << endl;
             }
@@ -770,7 +770,7 @@ void MenuLocal()
                 break;
             }
             cout << "Los candidatos a empleados del mes son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.candidatosAEmpleadosDelMesL().size(); i++)
+            for (int i = 0; i < nuevoLocal.candidatosAEmpleadosDelMesL().size(); i++)
             {
                 cout << i << " :" << nuevoLocal.candidatosAEmpleadosDelMesL()[i] << endl;
             }
@@ -806,7 +806,7 @@ void MenuLocal()
         case 17:
         {
             limpiarPantalla();
-            uint empleado;
+            int empleado;
             int sancion;
             if (!seCreoElLocal)
             {
@@ -815,7 +815,7 @@ void MenuLocal()
             }
             cout << "Sancionando un empleado" << endl<< endl;
             cout << "Los empleados del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.empleadosL().size(); i++)
+            for (int i = 0; i < nuevoLocal.empleadosL().size(); i++)
             {
                 cout << i << " :" << nuevoLocal.empleadosL()[i] << endl;
             }
@@ -836,7 +836,7 @@ void MenuLocal()
         case 18:
         {
             limpiarPantalla();
-            uint pedido;
+            int pedido;
             if (!seCreoElLocal)
             {
                 cout << "ERROR: No se creo ningun local aun";
@@ -844,7 +844,7 @@ void MenuLocal()
             }
             cout << "Anulando un pedido" << endl<< endl;
             cout << "Los pedidos del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.ventasL().size(); i++)
+            for (int i = 0; i < nuevoLocal.ventasL().size(); i++)
             {
                 cout << i << " :" << nuevoLocal.ventasL()[i] << endl;
             }
@@ -863,7 +863,7 @@ void MenuLocal()
         case 19:
         {
             limpiarPantalla();
-            uint pedido;
+            int pedido;
             if (!seCreoElLocal)
             {
                 cout << "ERROR: No se creo ningun local aun";
@@ -871,7 +871,7 @@ void MenuLocal()
             }
             cout << "Agregando combo a un pedido" << endl<< endl;
             cout << "Los pedidos del local son :" << endl << endl;
-            for (uint i = 0; i < nuevoLocal.ventasL().size(); i++)
+            for (int i = 0; i < nuevoLocal.ventasL().size(); i++)
             {
                 cout << i << " :" << nuevoLocal.ventasL()[i] << endl;
             }
@@ -977,7 +977,7 @@ Combo MenuCrearComboAPedidoDeLocal()
 {
     Energia energia;
     int hamburguesa;
-    uint bebida;
+    int bebida;
 
     cout << "Agregando un nuevo combo" << endl<< endl;
 
@@ -1061,7 +1061,7 @@ Pedido MenuCrearPedidoDeLocal()
     vector<Combo> Combos;
 
     int nro;
-    uint empleado;
+    int empleado;
 
     cout << "Creando un pedido nuevo para el Local: "<< endl<< endl;
 
@@ -1070,7 +1070,7 @@ Pedido MenuCrearPedidoDeLocal()
     cin >> nro;
 
     cout << "Los empleados del local son: " << endl << endl;
-    for (uint i = 0; i < nuevoLocal.empleadosL().size(); i++)
+    for (int i = 0; i < nuevoLocal.empleadosL().size(); i++)
     {
         cout << "| "<< i <<" | " << nuevoLocal.empleadosL()[i] << " |" << endl;
     }
@@ -1105,7 +1105,7 @@ void mostrarMenuAgregacionComboAPedido(int nro, Empleado empleado, vector<Combo>
     cout << "Empleado = " << empleado << endl;
     cout << "Combos : " << endl;
 
-    for (uint i = 0; i < combos.size(); i++)
+    for (int i = 0; i < combos.size(); i++)
     {
         combos[i].mostrar(cout);
         cout << endl;
@@ -1135,7 +1135,7 @@ vector<Empleado> menuAgregacionEmpleadosALocal()
         limpiarPantalla();
         cout << "Ingresando empleados al local" << endl << endl;
         cout << "vector de empleados :" << endl;
-        for(uint i = 0; i < empleados.size(); i++)
+        for(int i = 0; i < empleados.size(); i++)
         {
             cout << empleados[i] << endl;
         }
@@ -1149,7 +1149,7 @@ vector<Empleado> menuAgregacionEmpleadosALocal()
         limpiarPantalla();
         cout << "Ingresando empleados al local" << endl << endl;
         cout << "vector de empleados :" << endl;
-        for(uint i = 0; i < empleados.size(); i++)
+        for(int i = 0; i < empleados.size(); i++)
         {
             cout << empleados[i] << endl;
         }
@@ -1263,7 +1263,7 @@ void mostrarStockHamburguesas(vector< pair <Hamburguesa,Cantidad> > stock)
 {
     cout << "Stock de hamburguesas: " << endl << endl;
     cout << "Hamburguesa" << "\t\tCantidad" << endl;
-    for (uint i = 0; i < stock.size(); i++)
+    for (int i = 0; i < stock.size(); i++)
     {
         cout << stock[i].first << "\t" << stock[i].second << endl;
     }
@@ -1273,7 +1273,7 @@ void mostrarStockBebidas(vector< pair <Bebida,Cantidad> > stock)
 {
     cout << "Stock de bebidas: " << endl << endl;
     cout << "Bebida" << "\t\tCantidad" << endl;
-    for (uint i = 0; i < stock.size(); i++)
+    for (int i = 0; i < stock.size(); i++)
     {
         cout << stock[i].first << "\t" << stock[i].second << endl;
     }
@@ -1282,7 +1282,7 @@ void mostrarStockBebidas(vector< pair <Bebida,Cantidad> > stock)
 void mostrarHamburguesasYBebidas()
 {
     cout << "vector de Bebidas : \t |\tvector de Hamburguesas" << endl; cout << " \t\t\t |" << endl;
-    for (uint i = 0; i < Bebidas.size(); i++)
+    for (int i = 0; i < Bebidas.size(); i++)
     {
         cout << i << ":" << traducir(Bebidas[i]) << "\t\t |\t";
         if (i < Hamburguesas.size()) cout << i << " :" << traducir(Hamburguesas[i]) << endl;
@@ -1295,7 +1295,7 @@ void mostrarHamburguesasYBebidasDeLocal( )
     if (nuevoLocal.bebidasDelLocalL().size() > nuevoLocal.sandwichesDelLocalL().size())
     {
         cout << "vector de Bebidas : \t |\tvector de Hamburguesas" << endl; cout << " \t\t\t |" << endl;
-        for (uint i = 0; i < nuevoLocal.bebidasDelLocalL().size(); i++)
+        for (int i = 0; i < nuevoLocal.bebidasDelLocalL().size(); i++)
         {
             cout << i << ":" << traducir(nuevoLocal.bebidasDelLocalL()[i]) << "\t\t |\t";
             if (i < nuevoLocal.sandwichesDelLocalL().size()) cout << i << " :" << traducir(nuevoLocal.sandwichesDelLocalL()[i]) << endl;
@@ -1304,7 +1304,7 @@ void mostrarHamburguesasYBebidasDeLocal( )
     }else
     {
         cout << "vector de Hamburguesas : \t |\tvector de Bebidas" << endl; cout << " \t\t\t |" << endl;
-        for (uint i = 0; i < nuevoLocal.sandwichesDelLocalL().size(); i++)
+        for (int i = 0; i < nuevoLocal.sandwichesDelLocalL().size(); i++)
         {
             cout << i << ":" << traducir(nuevoLocal.sandwichesDelLocalL()[i]) << "\t\t |\t";
             if (i < nuevoLocal.bebidasDelLocalL().size()) cout << i << " :" << traducir(nuevoLocal.bebidasDelLocalL()[i]) << endl;
@@ -1318,7 +1318,7 @@ void mostrarHamburguesasYBebidasDeLocal( )
 void mostrarCombos(vector<Combo> combos)
 {
     cout << "Los combos del pedido son: " << endl<< endl;
-    for(uint i = 0; i < combos.size(); i++)
+    for(int i = 0; i < combos.size(); i++)
     {
         cout << i << ":"; combos[i].mostrar(cout); cout << endl;
     }
