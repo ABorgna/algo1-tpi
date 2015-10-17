@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include "tipos.h"
 #include "combo.h"
+#include "auxiliar.h"
 
 class Pedido {
 

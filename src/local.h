@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "pedido.h"
-#include "aux.h"
+#include "auxiliar.h"
 #include "combo.h"
 #include "pedido.h"
 

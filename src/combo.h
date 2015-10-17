@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "tipos.h"
-#include "aux.h"
+#include "auxiliar.h"
 
 class Combo {
 

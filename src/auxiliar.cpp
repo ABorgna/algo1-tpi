@@ -1,4 +1,4 @@
-#include "aux.h"
+#include "auxiliar.h"
 
 void trimIS(std::istream & is){
     while(is.peek() == ' ')

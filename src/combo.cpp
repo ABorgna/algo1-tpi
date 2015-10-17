@@ -39,14 +39,20 @@ bool Combo::operator==(const Combo& otroCombo) const{
 
 std::ostream & operator<<(std::ostream & os,const Combo & c){
     // Sofia
+    c.mostrar(os);
+    return os;
 }
 
 std::ostream & operator<<(std::ostream & os,const Hamburguesa & h){
     // Alejo
+    os << HAMBURGUESA_STR[h];
+    return os;
 }
 
 std::ostream & operator<<(std::ostream & os,const Bebida & b){
     // Leandro
+    os << BEBIDA_STR[b];
+    return os;
 }
 
 std::istream & operator>>(std::istream & is, Combo & c){
