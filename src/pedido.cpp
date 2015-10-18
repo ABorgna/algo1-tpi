@@ -12,7 +12,7 @@ int Pedido::numeroP() const{
 }
 
 Empleado Pedido::atendioP() const{
-    // Leandro
+    return _atendio;
 }
 
 vector<Combo> Pedido::combosP() const{
@@ -28,7 +28,7 @@ void  Pedido::agregarComboP(const Combo c){
 }
 
 void  Pedido::anularComboP(int i){
-    // Leandro
+    _combos.erase(_combos.begin()+i);
 }
 
 void  Pedido::cambiarBebidaComboP(const Bebida b, int i){
@@ -45,7 +45,12 @@ void Pedido::mostrar(std::ostream& os) const{
 }
 
 void Pedido::guardar(std::ostream& os) const{
-    // Leandro
+    os << '{'
+       << ENCABEZADO_ARCHIVO
+       << _numero
+       << _atendio
+       << _combos;
+       << '}';
 }
 
 void Pedido::cargar (std::istream& is){

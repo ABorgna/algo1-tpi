@@ -2,8 +2,14 @@
 #include <string.h>
 #include <algorithm>
 
+vector<Pedido> pedidosDelEmpleado();
+int maxDescansoEmplado(Empleado);
+
 Local::Local(){
-    // Leandro
+    _bebidas = pair<Bebida,Cantidad>(PestiCola,0);
+    _empleados = pair<Empleado,Cantidad>("",100);
+    _sandwiches = pair<Hamburguesa,Cantidad>(MacPato,0);
+    _ventas = vector<Pedido>(1);
 }
 
 Local::Local(const vector< pair<Bebida,Cantidad> > bs,
@@ -27,7 +33,12 @@ Cantidad Local::stockSandwichesL(const Hamburguesa h) const{
 }
 
 vector<Bebida>       Local::bebidasDelLocalL() const{
-    // Leandro
+    vector<Bebida> res;
+    res.reserve(_bebidas.size());
+    for (Bebida &i : _bebidas){
+        res.push_back(i.first);
+    }
+    return res;
 }
 
 vector<Hamburguesa>  Local::sandwichesDelLocalL() const{
@@ -48,7 +59,9 @@ vector<Empleado>     Local::desempleadosL() const{
 }
 
 Energia  Local::energiaEmpleadoL(const Empleado e) const{
-    // Leandro
+    for (auto &i : _empleados)
+        if (i.first == Empleado)
+            return i.second;
 }
 
 vector<Pedido>       Local::ventasL() const{
@@ -64,7 +77,9 @@ void Local::venderL(const Pedido p){
 }
 
 void Local::sancionL(const Empleado e, const Energia n){
-    // Leandro
+    for (auto &i : _empleados)
+        if (i.first == e)
+            i.second -= n;
 }
 
 void Local::anularPedidoL(int n){
@@ -103,7 +118,15 @@ bool Local::unaVentaCadaUnoL() const{
 }
 
 Empleado Local::elVagonetaL() const{
-    // Leandro
+    vector< pair<Empleado,int> > empYdes = empleadoYdescanso();
+    int i = 1, n = emp.size();
+    int vago = 0;
+    while (i < n){
+        if (empYdes[i].second > empYdes[vago].second)
+            vago = i;
+        i++;
+    }
+    return empYdes[vago].first;
 }
 
 void Local::guardar(std::ostream& os) const{
@@ -123,7 +146,8 @@ void Local::cargar (std::istream& is){
 }
 
 std::ostream & operator<<(std::ostream & os,const Local & l){
-    // Leandro
+    l.mostrar(os);
+    return os;
 }
 
 std::istream & operator>>(std::istream & is, Local & l){
@@ -131,3 +155,32 @@ std::istream & operator>>(std::istream & is, Local & l){
     return is;
 }
 
+
+//Shhhh aca no pasa nada
+vector<Pedido> pedidosDelEmpleado(Empleado e){
+    vector<Pedido> res = vector<Pedido>(1);
+    for (auto &i : _ventas)
+        if (i.atendioP()==e)
+            res.push_back(i);
+    return res;
+}
+
+int maxDescansoEmplado(Empleado e){
+    vector<Pedido> pedidos = pedidosDelEmpleado(e);
+    vector<int> numVen = numsVentas();
+    int maxDescanso = pedidos[0].numeroP() - _ventas[0].numeroP();
+    for (int i = 1; i < pedidos.size(); i++)
+        maxDescanso = max(pedidos[i].numeroP() - pedidos[i-1].numeroP(),maxDescanso);
+    maxDescanso = max(pedidos.back().numeroP() - _ventas.back().numeroP(),maxDescanso);
+    return maxDescanso;
+}
+
+vector< pair<Empleado, int> > empleadoYdescanso()
+{
+    vector< pair<Empleado,int> > res;
+    vector<Empleado> emp = empleadosL();
+    res.reserve(emp.size());
+    for(auto &i : emp)
+        res.push_back(pair<Empleado,int>(i,maxDescanso(i)));
+    return res;
+}

@@ -12,7 +12,7 @@ Bebida      Combo::bebidaC() const{
 }
 
 Hamburguesa Combo::sandwichC() const{
-    // Leandro
+    return _sandwich;
 }
 
 Energia     Combo::dificultadC() const{
@@ -28,7 +28,19 @@ void Combo::guardar(std::ostream& os) const{
 }
 
 void Combo::cargar (std::istream& is){
-    // Leandro
+    char head;
+
+    is >> head; //Inicio {
+
+    is >> head;
+    if (head != ENCABEZADO_ARCHIVO){
+        throw std::invalid_argument("Encabezado inválido");
+    }
+    is >> _bebida
+       >> _sandwich
+       >> _dificultad;
+
+    is >> head; //Fin }
 }
 
 bool Combo::operator==(const Combo& otroCombo) const{
