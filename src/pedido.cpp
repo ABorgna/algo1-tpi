@@ -49,7 +49,7 @@ void Pedido::guardar(std::ostream& os) const{
        << ENCABEZADO_ARCHIVO
        << _numero
        << _atendio
-       << _combos;
+       << _combos
        << '}';
 }
 

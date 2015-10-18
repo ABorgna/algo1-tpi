@@ -4,11 +4,12 @@
 
 vector<Pedido> pedidosDelEmpleado();
 int maxDescansoEmplado(Empleado);
+vector< pair<Empleado, int> > empleadoYdescanso(const Local *l);
 
-Local::Local(){
-    _bebidas = pair<Bebida,Cantidad>(PestiCola,0);
-    _empleados = pair<Empleado,Cantidad>("",100);
-    _sandwiches = pair<Hamburguesa,Cantidad>(MacPato,0);
+Local::Local() {
+    _bebidas = vector<pair<Bebida,Cantidad> >{{PestiCola,0}};
+    _empleados = vector<pair<Empleado,Cantidad> >{{"",100}};
+    _sandwiches = vector<pair<Hamburguesa,Cantidad> >{{McPato,0}};
     _ventas = vector<Pedido>(1);
 }
 
@@ -35,7 +36,7 @@ Cantidad Local::stockSandwichesL(const Hamburguesa h) const{
 vector<Bebida>       Local::bebidasDelLocalL() const{
     vector<Bebida> res;
     res.reserve(_bebidas.size());
-    for (Bebida &i : _bebidas){
+    for (auto &i : _bebidas){
         res.push_back(i.first);
     }
     return res;
@@ -60,7 +61,7 @@ vector<Empleado>     Local::desempleadosL() const{
 
 Energia  Local::energiaEmpleadoL(const Empleado e) const{
     for (auto &i : _empleados)
-        if (i.first == Empleado)
+        if (i.first == e)
             return i.second;
 }
 
@@ -118,8 +119,8 @@ bool Local::unaVentaCadaUnoL() const{
 }
 
 Empleado Local::elVagonetaL() const{
-    vector< pair<Empleado,int> > empYdes = empleadoYdescanso();
-    int i = 1, n = emp.size();
+    vector< pair<Empleado,int> > empYdes = empleadoYdescanso(this);
+    int i = 1, n = empYdes.size();
     int vago = 0;
     while (i < n){
         if (empYdes[i].second > empYdes[vago].second)
@@ -157,30 +158,29 @@ std::istream & operator>>(std::istream & is, Local & l){
 
 
 //Shhhh aca no pasa nada
-vector<Pedido> pedidosDelEmpleado(Empleado e){
+vector<Pedido> pedidosDelEmpleado(const Local *l,Empleado e){
     vector<Pedido> res = vector<Pedido>(1);
-    for (auto &i : _ventas)
+    for (auto &i : l->ventasL())
         if (i.atendioP()==e)
             res.push_back(i);
     return res;
 }
 
-int maxDescansoEmplado(Empleado e){
-    vector<Pedido> pedidos = pedidosDelEmpleado(e);
-    vector<int> numVen = numsVentas();
-    int maxDescanso = pedidos[0].numeroP() - _ventas[0].numeroP();
+int maxDescansoEmpleado(const Local *l,Empleado e){
+    vector<Pedido> pedidos = pedidosDelEmpleado(l,e);
+    int maxDescanso = pedidos[0].numeroP() - l->ventasL()[0].numeroP();
     for (int i = 1; i < pedidos.size(); i++)
         maxDescanso = max(pedidos[i].numeroP() - pedidos[i-1].numeroP(),maxDescanso);
-    maxDescanso = max(pedidos.back().numeroP() - _ventas.back().numeroP(),maxDescanso);
+    maxDescanso = max(pedidos.back().numeroP() - l->ventasL().back().numeroP(),maxDescanso);
     return maxDescanso;
 }
 
-vector< pair<Empleado, int> > empleadoYdescanso()
+vector< pair<Empleado, int> > empleadoYdescanso(const Local *l)
 {
     vector< pair<Empleado,int> > res;
-    vector<Empleado> emp = empleadosL();
+    vector<Empleado> emp = l->empleadosL();
     res.reserve(emp.size());
     for(auto &i : emp)
-        res.push_back(pair<Empleado,int>(i,maxDescanso(i)));
+        res.push_back(pair<Empleado,int>(i,maxDescansoEmpleado(l,i)));
     return res;
 }

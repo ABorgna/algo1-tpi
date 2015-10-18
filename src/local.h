@@ -40,6 +40,7 @@ class Local{
         vector< pair <Empleado, Energia> >    _empleados;
         vector< Pedido >                      _ventas;
 
+        
 
         enum {ENCABEZADO_ARCHIVO = 'L'};
 
