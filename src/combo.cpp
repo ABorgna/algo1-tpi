@@ -4,7 +4,9 @@
 Combo::Combo() : Combo(PestiCola,McGyver,0) {}
 
 Combo::Combo(const Bebida b, const Hamburguesa h, const Energia d ){
-    // Sofia
+    _bebida = b;
+    _sandwich = h;
+    _dificultad = d;
 }
 
 Bebida      Combo::bebidaC() const{
@@ -20,7 +22,7 @@ Energia     Combo::dificultadC() const{
 }
 
 void Combo::mostrar(std::ostream& os) const{
-    // Sofia
+     os<<"Bebida: "<<bebidaC()<<"Sandwich: "<<sandwichC()<<"Dificultad: "<<dificultadC();
 }
 
 void Combo::guardar(std::ostream& os) const{
