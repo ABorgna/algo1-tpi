@@ -26,7 +26,19 @@ Local::Local(const vector< pair<Bebida,Cantidad> > bs,
 }
 
 Cantidad Local::stockBebidasL(const Bebida b) const{
-    // Sofia
+    int n = _bebidas.size();
+    int i = 0;
+    int stock;
+    while (i<n){
+		if (_bebidas[i].first != b){
+			i++;
+		}
+		else{
+			stock= _bebidas[i].second;
+			i=n;
+		}
+	}	
+	return stock;	
 }
 
 Cantidad Local::stockSandwichesL(const Hamburguesa h) const{
@@ -52,9 +64,17 @@ vector<Hamburguesa>  Local::sandwichesDelLocalL() const{
 }
 
 vector<Empleado>     Local::empleadosL() const{
-    // Sofia
+    vector<Empleado> res;
+    res.reserve(_empleados.size());
+    for (auto &i : _empleados){
+		if(i.second>=0){
+		res.push_back(i.first);
+        }
+    }
+    return res;
 }
 
+	
 vector<Empleado>     Local::desempleadosL() const{
     // Alejo
 }
@@ -139,7 +159,11 @@ void Local::guardar(std::ostream& os) const{
 }
 
 void Local::mostrar(std::ostream& os) const{
-    // Sofia
+     os<<"Bebidas del local y su stock: "<<_bebidas<<endl;
+     os<<"Sandwiches del local y su stock: "<<_sandwiches<<endl;
+     os<<"Empleados y desempleados del local con su energía: "<<_empleados<<endl;
+     os<<"(los que tienen energía no negativa son los empleados y los de energía negativa son los desempleados)"<<endl;
+     os<<"Ventas de local: "<<ventasL();
 }
 
 void Local::cargar (std::istream& is){

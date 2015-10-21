@@ -4,11 +4,13 @@
 Pedido::Pedido() : Pedido(1,"",vector<Combo>(1)){}
 
 Pedido::Pedido(const int nro, const Empleado e, const vector<Combo> combos){
-    // Sofia
+    _numero = nro;
+    _atendio = e;
+    _combos = combos;
 }
 
 int Pedido::numeroP() const{
-    // Alejo
+    //Alejo
 }
 
 Empleado Pedido::atendioP() const{
@@ -20,7 +22,14 @@ vector<Combo> Pedido::combosP() const{
 }
 
 Energia Pedido::dificultadP() const{
-    // Sofia
+    int n=combosP().size();
+    int sum=0;
+    int i=0;
+    while(i<n){
+		sum=sum+combosP()[i].dificultadC();
+		i++;
+	}
+	return sum;
 }
 
 void  Pedido::agregarComboP(const Combo c){
@@ -68,7 +77,9 @@ void Pedido::cargar (std::istream& is){
 }
 
 bool Pedido::operator==(const Pedido& otroPedido) const{
-    // Sofia
+    return atendioP() == otroPedido.atendioP() &&
+           numeroP() == otroPedido.numeroP() &&
+           combosP() == otroPedido.combosP();
 }
 
 // Auxiliares
