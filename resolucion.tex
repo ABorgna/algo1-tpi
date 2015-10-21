@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+
+\usepackage[spanish]{babel} % Le indicamos a LaTeX que vamos a escribir en español.
+\usepackage[latin1]{inputenc} % Permite utilizar tildes y eñes normalmente
+%\usepackage{framed}
+\input{Algo1Macros}% Macros especificas para especificar problemas en AyEDI
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+% Configuracion de listings
+\lstset{
+  language=C++,                   % choose the language of the code
+  numbers=left,                   % where to put the line-numbers
+  numbersep=10pt,                 % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  tabsize=4,                      % sets default tabsize to 2 spaces
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=true,         % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+  commentstyle=\color{mygreen},    % comment style
+  keywordstyle=\color{blue},       % keyword style
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+\newcommand{\comen}[2]{%
+\begin{framed}
+\noindent \textsf{#1:} #2
+\end{framed}
+}
+
+\begin{document} % Todo lo que escribamos a partir de aca va a aparecer en el documento.
+
+\section{Código}
+
+\lstinputlisting{src/fatFood.cpp}
+\lstinputlisting{src/tipos.h}
+\lstinputlisting{src/combo.h}
+\lstinputlisting{src/combo.cpp}
+\lstinputlisting{src/pedido.h}
+\lstinputlisting{src/pedido.cpp}
+\lstinputlisting{src/local.h}
+\lstinputlisting{src/local.cpp}
+\lstinputlisting{src/auxiliar.h}
+\lstinputlisting{src/auxiliar.cpp}
+
+\section{Demostraciones}
+
+todo
+
+\end{document} %Terminé!
+
