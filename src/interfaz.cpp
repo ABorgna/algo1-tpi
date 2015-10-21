@@ -1326,7 +1326,7 @@ void mostrarCombos(vector<Combo> combos)
 
 void Salir()
 {
-    cout << "Gracias, Vuelvan pronto!" << endl;
+    cout << "Gracias, Vuelvan prontos!" << endl;
 }
 
 void Pausar()

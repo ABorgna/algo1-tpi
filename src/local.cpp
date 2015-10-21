@@ -5,6 +5,8 @@
 vector<Pedido> pedidosDelEmpleado();
 int maxDescansoEmplado(Empleado);
 vector< pair<Empleado, int> > empleadoYdescanso(const Local *l);
+vector< pair <Empleado, Energia> > empleadosYenegiaL(const Local *l);
+
 
 Local::Local() {
     _bebidas = vector<pair<Bebida,Cantidad> >{{PestiCola,0}};
@@ -76,7 +78,7 @@ vector<Empleado>     Local::empleadosL() const{
 
 	
 vector<Empleado>     Local::desempleadosL() const{
-    // Alejo
+	 // Alejo
 }
 
 Energia  Local::energiaEmpleadoL(const Empleado e) const{
@@ -158,11 +160,13 @@ void Local::guardar(std::ostream& os) const{
        << _ventas << " }";
 }
 
+
+    
 void Local::mostrar(std::ostream& os) const{
      os<<"Bebidas del local y su stock: "<<_bebidas<<endl;
      os<<"Sandwiches del local y su stock: "<<_sandwiches<<endl;
-     os<<"Empleados y desempleados del local con su energía: "<<_empleados<<endl;
-     os<<"(los que tienen energía no negativa son los empleados y los de energía negativa son los desempleados)"<<endl;
+     os<<"Empleados del local y su energía: "<<empleadosYenegiaL(this)<<endl;
+     os<<"Desempleados del local: "<<desempleadosL()<<endl;
      os<<"Ventas de local: "<<ventasL();
 }
 
@@ -208,3 +212,13 @@ vector< pair<Empleado, int> > empleadoYdescanso(const Local *l)
         res.push_back(pair<Empleado,int>(i,maxDescansoEmpleado(l,i)));
     return res;
 }
+
+vector< pair <Empleado, Energia> >  empleadosYenegiaL(const Local *l){
+    vector< pair <Empleado, Energia> >  res;
+    vector<Empleado> emp = l->empleadosL();
+    res.reserve(emp.size());
+    for (auto &i : emp)
+		res.push_back(pair<Empleado,Energia>(i,l->energiaEmpleadoL(i)));
+    return res;
+}
+
