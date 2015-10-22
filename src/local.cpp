@@ -229,8 +229,10 @@ void Local::agregarComboAlPedidoL(const Combo c, int n){
 bool Local::unaVentaCadaUnoL() const{
     vector<Pedido> v=_ventas;
     sort(v. begin(), v. end(), [] (Pedido p1, Pedido p2) {return p1.numeroP() < p2.numeroP();});
-    for (int i=0;i<v.size();i++)
+    int i=0;
+    while(i<v.size())
     {
+        i++;
         bool pertenece=false;
         for (int j=0;j<_empleados.size();j++)
         {
@@ -242,6 +244,7 @@ bool Local::unaVentaCadaUnoL() const{
         if (pertenece==false)
         {
             v.erase(v.begin()+i);
+            i--;
         }
     }
     if (v.size()<=1)
