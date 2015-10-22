@@ -10,7 +10,7 @@ Pedido::Pedido(const int nro, const Empleado e, const vector<Combo> combos){
 }
 
 int Pedido::numeroP() const{
-    //Alejo
+    return _numero;
 }
 
 Empleado Pedido::atendioP() const{
@@ -33,7 +33,7 @@ Energia Pedido::dificultadP() const{
 }
 
 void  Pedido::agregarComboP(const Combo c){
-    // Alejo
+    _combos.push_back(c);
 }
 
 void  Pedido::anularComboP(int i){
@@ -46,11 +46,16 @@ void  Pedido::cambiarBebidaComboP(const Bebida b, int i){
 }
 
 void  Pedido::elMezcladitoP(){
-    // Sofia
+    //Sofia    
 }
 
 void Pedido::mostrar(std::ostream& os) const{
-    // Alejo
+    os<<"Numero de pedido: "<<numeroP()<<endl;
+     os<<"Empleado que atendio el pedido: "<<atendioP()<<endl;
+     os<<"Los combos que integran el pedido son: "<<endl;
+     for (int i=0;i<combosP().size();i++){
+     os<<"Sandwich: "<<combosP()[i].sandwichC()<<" Bebida: "<<combosP()[i].bebidaC()<<" Dificultad: "<<combosP()[i].dificultadC()<<endl;
+     }
 }
 
 void Pedido::guardar(std::ostream& os) const{
@@ -102,7 +107,8 @@ int countSandwichesP(const Pedido& p, Hamburguesa s){
 }
 
 std::ostream & operator<<(std::ostream & os,const Pedido& p){
-    // Alejo
+    p.mostrar(os);
+    return os;
 }
 
 std::istream & operator>>(std::istream & is, Pedido & p){

@@ -11,7 +11,7 @@ Combo::Combo(const Bebida b, const Hamburguesa h, const Energia d ){
 }
 
 Bebida      Combo::bebidaC() const{
-    // Alejo
+    return _bebida;
 }
 
 Hamburguesa Combo::sandwichC() const{
@@ -29,7 +29,12 @@ void Combo::mostrar(std::ostream& os) const{
 }
 
 void Combo::guardar(std::ostream& os) const{
-    // Alejo
+    os << '{'
+       << ENCABEZADO_ARCHIVO
+       << _bebida<<" "
+       << _sandwich<<" "
+       << _dificultad<<" "
+       << '}';
 }
 
 void Combo::cargar (std::istream& is){

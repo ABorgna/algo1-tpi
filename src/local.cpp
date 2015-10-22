@@ -47,7 +47,19 @@ Cantidad Local::stockBebidasL(const Bebida b) const{
 }
 
 Cantidad Local::stockSandwichesL(const Hamburguesa h) const{
-    // Alejo
+    int n = _sandwiches.size();
+    int i = 0;
+    int stock;
+    while (i<n){
+		if (_sandwiches[i].first != h){
+			i++;
+		}
+		else{
+			stock= _sandwiches[i].second;
+			i=n;
+		}
+	}
+	return stock;
 }
 
 vector<Bebida>       Local::bebidasDelLocalL() const{
@@ -81,7 +93,14 @@ vector<Empleado>     Local::empleadosL() const{
 
 	
 vector<Empleado>     Local::desempleadosL() const{
-	 // Alejo
+	 vector<Empleado> res;
+    res.reserve(_empleados.size());
+    for (auto &i : _empleados){
+		if(i.second<0){
+		res.push_back(i.first);
+        }
+    }
+    return res;
 }
 
 Energia  Local::energiaEmpleadoL(const Empleado e) const{
@@ -112,7 +131,44 @@ vector<Empleado> Local::candidatosAEmpleadosDelMesL() const{
 }
 
 void Local::venderL(const Pedido p){
-    // Alejo
+    //duda: si no se cumple los requiere debo decir que no se cumplieron o simplemente se supone que se cumplen?
+   bool exito=true;
+   for (int i=0; i<_empleados.size();i++)
+   {
+        if (_empleados[i].first==p.atendioP())
+        {
+            _empleados[i].second= _empleados[i].second-p.dificultadP();
+            if (_empleados[i].second<0)
+            {
+                exito=false;
+            }
+        }
+   }
+   if (exito)
+   {
+
+    for (int i=0; i<_bebidas.size();i++)
+    {
+        for (int j=0; j<p.combosP().size();j++)
+        {
+            if (_bebidas[i].first==p.combosP()[j].bebidaC())
+            {
+                _bebidas[i].second--;
+            }
+        }
+    }
+   for (int i=0; i<_sandwiches.size();i++)
+   {
+        for (int j=0; j<p.combosP().size();j++)
+        {
+            if (_sandwiches[i].first==p.combosP()[j].sandwichC())
+            {
+                _sandwiches[i].second--;
+            }
+        }
+   }
+   _ventas.push_back(p);
+   }
 }
 
 void Local::sancionL(const Empleado e, const Energia n){
@@ -171,7 +227,51 @@ void Local::agregarComboAlPedidoL(const Combo c, int n){
 }
 
 bool Local::unaVentaCadaUnoL() const{
-    // Alejo
+    vector<Pedido> v=_ventas;
+    sort(v. begin(), v. end(), [] (Pedido p1, Pedido p2) {return p1.numeroP() < p2.numeroP();});
+    for (int i=0;i<v.size();i++)
+    {
+        bool pertenece=false;
+        for (int j=0;j<_empleados.size();j++)
+        {
+            if ((v[i].atendioP()==_empleados[j].first)&& (_empleados[j].second>0))
+            {
+                    pertenece=true;
+            }
+        }
+        if (pertenece==false)
+        {
+            v.erase(v.begin()+i);
+        }
+    }
+    if (v.size()<=1)
+    {
+        return true;
+    }
+    if (v.size()>1)
+    {
+        int i=1;
+        while ((i<v.size())&&(!(v[0].numeroP()==v[i].numeroP())))
+        {
+            i++;
+        }
+        if (i==v.size())
+        {
+            return true;
+        }
+        bool estado=true;
+        if (i<v.size())
+        {
+            for (int j=0;j<v.size()-i;j++)
+            {
+                if (!(v[j].atendioP()==v[j+i].atendioP()))
+                {
+                        estado=false;
+                }
+            }
+            return estado;
+        }
+    }
 }
 
 Empleado Local::elVagonetaL() const{
@@ -205,7 +305,19 @@ void Local::mostrar(std::ostream& os) const{
 }
 
 void Local::cargar (std::istream& is){
-    // Alejo
+    char head;
+    is >> head; //Inicio {
+
+    is >> head;
+    if (head != ENCABEZADO_ARCHIVO){
+        throw std::invalid_argument("Encabezado inválido");
+    }
+    is >> _bebidas
+       >> _empleados
+       >> _sandwiches
+       >> _ventas;
+
+    is >> head; //Fin }
 }
 
 std::ostream & operator<<(std::ostream & os,const Local & l){
