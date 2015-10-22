@@ -6,8 +6,11 @@ vector<Pedido> pedidosDelEmpleado();
 int maxDescansoEmplado(Empleado);
 vector< pair<Empleado, int> > empleadoYdescanso(const Local *l);
 vector< pair <Empleado, Energia> > empleadosYenegiaL(const Local *l);
-
-
+vector<Empleado> empleadosConMasVentas(const Local *l);
+int maxCantPedidos(const Local *l);
+int maxCantCombos(const Local *l);
+vector<Combo> combosDelEmpleado(const Local *l,Empleado e);
+	
 Local::Local() {
     _bebidas = vector<pair<Bebida,Cantidad> >{{PestiCola,0}};
     _empleados = vector<pair<Empleado,Cantidad> >{{"",100}};
@@ -92,7 +95,20 @@ vector<Pedido>       Local::ventasL() const{
 }
 
 vector<Empleado> Local::candidatosAEmpleadosDelMesL() const{
-    // Sofia
+	vector<Empleado> res;
+	vector<Empleado> emp = empleadosConMasVentas(this);
+	int n = emp.size();
+    int i = 0;
+	while (i<n){
+		if (combosDelEmpleado(this,emp[i]).size() == maxCantCombos(this)){
+		res.push_back(emp[i]);
+		i++;
+		}
+		else{
+		i++;
+		}
+	}
+	return res;
 }
 
 void Local::venderL(const Pedido p){
@@ -209,7 +225,7 @@ vector< pair<Empleado, int> > empleadoYdescanso(const Local *l)
     vector<Empleado> emp = l->empleadosL();
     res.reserve(emp.size());
     for(auto &i : emp)
-        res.push_back(pair<Empleado,int>(i,maxDescansoEmpleado(l,i)));
+	    res.push_back(pair<Empleado,int>(i,maxDescansoEmpleado(l,i)));
     return res;
 }
 
@@ -221,4 +237,68 @@ vector< pair <Empleado, Energia> >  empleadosYenegiaL(const Local *l){
 		res.push_back(pair<Empleado,Energia>(i,l->energiaEmpleadoL(i)));
     return res;
 }
+vector<Empleado> empleadosConMasVentas(const Local *l){
+	vector<Empleado> res;
+	vector<Empleado> emp = l->empleadosL();
+	int n = emp.size();
+	int i = 0;
+	while (i<n){
+		if (pedidosDelEmpleado(l,emp[i]).size() == maxCantPedidos(l)){
+		res.push_back(emp[i]);
+		i++;
+		}
+		else{
+		i++;
+		}
+	}
+	return res;
+}
+
+int maxCantPedidos(const Local *l){
+	int res;
+	vector<Empleado> emp = l->empleadosL();
+	int n = emp.size();
+	int i=1;
+	Empleado e = emp[0];
+	while (i<n){
+		if (pedidosDelEmpleado(l,emp[i]).size() >= pedidosDelEmpleado(l,e).size()){
+			e=emp[i];
+			i++;
+		}
+		else{
+			i++;
+		}
+	}
+	res = pedidosDelEmpleado(l,e).size();
+	return res;
+}
+
+int maxCantCombos(const Local *l){
+	int res;
+	vector<Empleado> emp = empleadosConMasVentas(l);
+	int n = emp.size();
+	int i=1;
+	Empleado e = emp[0];
+	while (i<n){
+		if (combosDelEmpleado(l,emp[i]).size() >= combosDelEmpleado(l,e).size()){
+			e=emp[i];
+			i++;
+		}
+		else{
+			i++;
+		}
+	}
+	res = combosDelEmpleado(l,e).size();
+	return res;
+}
+
+vector<Combo> combosDelEmpleado(const Local *l,Empleado e){
+    vector<Combo> res = vector<Combo>(1);
+    for (auto &i : l->ventasL())
+        if (i.atendioP()==e)
+            for (auto &j : i.combosP())
+				res.push_back(j);
+    return res;
+}
+
 
