@@ -10,7 +10,7 @@ vector<Empleado> empleadosConMasVentas(const Local *l);
 int maxCantPedidos(const Local *l);
 int maxCantCombos(const Local *l);
 vector<Combo> combosDelEmpleado(const Local *l,Empleado e);
-	
+
 Local::Local() {
     _bebidas = vector<pair<Bebida,Cantidad> >{{PestiCola,0}};
     _empleados = vector<pair<Empleado,Cantidad> >{{"",100}};
@@ -42,8 +42,8 @@ Cantidad Local::stockBebidasL(const Bebida b) const{
 			stock= _bebidas[i].second;
 			i=n;
 		}
-	}	
-	return stock;	
+	}
+	return stock;
 }
 
 Cantidad Local::stockSandwichesL(const Hamburguesa h) const{
@@ -91,7 +91,7 @@ vector<Empleado>     Local::empleadosL() const{
     return res;
 }
 
-	
+
 vector<Empleado>     Local::desempleadosL() const{
 	 vector<Empleado> res;
     res.reserve(_empleados.size());
@@ -222,7 +222,7 @@ void Local::agregarComboAlPedidoL(const Combo c, int n){
 	stockBebidasL(c.bebidaC())-1;
     stockSandwichesL(c.sandwichC())-1;
     energiaEmpleadoL(p.atendioP())-c.dificultadC();
-    p.combosP().push_back(c);    
+    p.combosP().push_back(c);
 	ventasL()[j]=p;
 }
 
@@ -234,7 +234,7 @@ bool Local::unaVentaCadaUnoL() const{
         bool pertenece=false;
         for (int j=0;j<_empleados.size();j++)
         {
-            if ((v[i].atendioP()==_empleados[j].first)&& (_empleados[j].second>0))
+            if ((v[i].atendioP()==_empleados[j].first)&& (_empleados[j].second>=0))
             {
                     pertenece=true;
             }
@@ -295,7 +295,7 @@ void Local::guardar(std::ostream& os) const{
 }
 
 
-    
+
 void Local::mostrar(std::ostream& os) const{
      os<<"Bebidas del local y su stock: "<<_bebidas<<endl;
      os<<"Sandwiches del local y su stock: "<<_sandwiches<<endl;
