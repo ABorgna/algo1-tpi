@@ -149,7 +149,25 @@ void Local::anularPedidoL(int n){
 }
 
 void Local::agregarComboAlPedidoL(const Combo c, int n){
-    // Sofia
+    Pedido p;
+    int m = ventasL().size();
+    int i=0;
+    int j=0;
+    while (i<m){
+		if (ventasL()[i].numeroP()==n){
+			p=ventasL()[i];
+			j=i;
+			i=n;
+		}
+		else{
+			i++;
+		}
+	}
+	stockBebidasL(c.bebidaC())-1;
+    stockSandwichesL(c.sandwichC())-1;
+    energiaEmpleadoL(p.atendioP())-c.dificultadC();
+    p.combosP().push_back(c);    
+	ventasL()[j]=p;
 }
 
 bool Local::unaVentaCadaUnoL() const{
