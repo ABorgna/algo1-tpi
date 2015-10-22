@@ -247,6 +247,8 @@ bool Local::unaVentaCadaUnoL() const{
             i--;
         }
     }
+
+    //CREO QUE HAY ALGUN EN ERROR EN EL CODIGO A PARTIR DE ACA PORQUE ANADA MAL EL CASO A B A C
     if (v.size()<=1)
     {
         return true;
