@@ -157,7 +157,7 @@ void Local::agregarComboAlPedidoL(const Combo c, int n){
 		if (ventasL()[i].numeroP()==n){
 			p=ventasL()[i];
 			j=i;
-			i=n;
+			i=m;
 		}
 		else{
 			i++;
