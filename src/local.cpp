@@ -246,7 +246,7 @@ bool Local::unaVentaCadaUnoL() const{
     if (v.size()>1)
     {
         bool estado=true;
-        for (int i=0;i<v.size()-1);i++)
+        for (int i=0;i<v.size()-1;i++)
         {
             for (int j=i+1;j<v.size();j++)
             {
@@ -257,8 +257,9 @@ bool Local::unaVentaCadaUnoL() const{
                 }
             }
         }
+         return estado;
     }
-    return estado;
+
 }
 
 Empleado Local::elVagonetaL() const{
