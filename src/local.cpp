@@ -248,7 +248,7 @@ bool Local::unaVentaCadaUnoL() const{
     if (v.size()>1)
     {
         int i=1;
-        while ((i<v.size())&&(!(v[0].numeroP()==v[i].numeroP())))
+        while ((i<v.size())&&(!(v[0].atendioP()==v[i].atendioP())))
         {
             i++;
         }
