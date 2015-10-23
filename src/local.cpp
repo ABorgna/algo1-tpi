@@ -240,37 +240,17 @@ bool Local::unaVentaCadaUnoL() const{
         i++;
     }
 
-    //CREO QUE HAY ALGUN EN ERROR EN EL CODIGO A PARTIR DE ACA PORQUE ANADA MAL EL CASO A B A C
-    if (v.size()<=1)
-    {
-        return true;
-    }
-    if (v.size()>1)
-    {
-        int i=1;
-        while ((i<v.size())&&(!(v[0].numeroP()==v[i].numeroP())))
-        {
-            i++;
-        }
-        if (i==v.size())
-        {
-            return true;
-        }
-        bool estado=true;
-        if (i<v.size())
-        {
-            for (int j=0;j<v.size()-i;j++)
-            {
-                if (!(v[j].atendioP()==v[j+i].atendioP()))
-                {
-                        estado=false;
-                }
+    unsigned int nEmp = empleadosL().size();
+    bool estado=true;
+    cout << v;
+    if (v.size() > nEmp) {
+        for (unsigned int j=0; j<v.size()-nEmp; j++){
+            if (v[j].atendioP() != v[j+nEmp].atendioP()){
+                    estado=false;
             }
-            return estado;
         }
     }
-}
-
+    return estado;
 }
 
 Empleado Local::elVagonetaL() const{
