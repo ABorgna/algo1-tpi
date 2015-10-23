@@ -8,7 +8,8 @@ bool estaC(const Combo c, const vector<Combo> cs);
 void cambiarBebida (Combo &c, const vector<Bebida> bs);
 void cambiarSandwich (Combo &c, const vector<Hamburguesa> hs);
 
-Pedido::Pedido() : Pedido(1,"",vector<Combo>(1)){}
+Pedido::Pedido(){
+}
 
 Pedido::Pedido(const int nro, const Empleado e, const vector<Combo> combos){
     _numero = nro;
@@ -104,15 +105,19 @@ void Pedido::mostrar(std::ostream& os) const{
 }
 
 void Pedido::guardar(std::ostream& os) const{
-    os << '{'
-       << ENCABEZADO_ARCHIVO
-       << _numero
-       << _atendio
-       << _combos
-       << '}';
+    os << '{' << " "
+       << (char)ENCABEZADO_ARCHIVO << " "
+       << _numero << " "
+       << _atendio << " [ ";
+    for (auto &c : _combos){
+        c.guardar(os);
+        os << " ";
+    }
+    os << "] }";
 }
 
 void Pedido::cargar (std::istream& is){
+    char aux;
     is.ignore(0xff,'{'); // "  {"
     trimIS(is);
 
@@ -122,7 +127,6 @@ void Pedido::cargar (std::istream& is){
     is >> _numero
        >> _atendio
        >> _combos;
-
     is.ignore(0xff,'}'); // "  }"
 }
 

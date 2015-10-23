@@ -2,7 +2,8 @@
 #include <string.h>
 #include <stdexcept> 
 
-Combo::Combo() : Combo(PestiCola,McGyver,0) {}
+Combo::Combo(){
+}
 
 Combo::Combo(const Bebida b, const Hamburguesa h, const Energia d ){
     _bebida = b;
@@ -29,8 +30,8 @@ void Combo::mostrar(std::ostream& os) const{
 }
 
 void Combo::guardar(std::ostream& os) const{
-    os << '{'
-       << ENCABEZADO_ARCHIVO
+    os << '{'<<" "
+       << (char)ENCABEZADO_ARCHIVO<<" "
        << _bebida<<" "
        << _sandwich<<" "
        << _dificultad<<" "

@@ -12,10 +12,6 @@ int maxCantCombos(const Local *l);
 vector<Combo> combosDelEmpleado(const Local *l,Empleado e);
 
 Local::Local() {
-    _bebidas = vector<pair<Bebida,Cantidad> >{{PestiCola,0}};
-    _empleados = vector<pair<Empleado,Cantidad> >{{"",100}};
-    _sandwiches = vector<pair<Hamburguesa,Cantidad> >{{McPato,0}};
-    _ventas = vector<Pedido>(1);
 }
 
 Local::Local(const vector< pair<Bebida,Cantidad> > bs,
