@@ -50,7 +50,8 @@ void Combo::cargar (std::istream& is){
     is >> _bebida
        >> _sandwich
        >> _dificultad;
-
+    cout<<"se quedo con:"<<_sandwich<<endl;
+    cin>>head;
     is >> head; //Fin }
 }
 
@@ -83,7 +84,7 @@ std::istream & operator>>(std::istream & is, Combo & c){
 std::istream & operator>>(std::istream & is, Hamburguesa & c){
     string s;
     is >> s;
-    for(int i=0; i<MaxH; i++){
+    for(int i=0; i<=MaxH; i++){
         if(HAMBURGUESA_STR[i] == s){
             c = (Hamburguesa)i;
             break;
@@ -95,7 +96,7 @@ std::istream & operator>>(std::istream & is, Hamburguesa & c){
 std::istream & operator>>(std::istream & is, Bebida & b){
     string s;
     is >> s;
-    for(int i=0; i<MaxB; i++){
+    for(int i=0; i<=MaxB; i++){
         if(BEBIDA_STR[i] == s){
             b = (Bebida)i;
             break;
