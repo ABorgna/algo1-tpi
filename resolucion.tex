@@ -63,7 +63,7 @@
 \section{Demostraciones}
 
 
-Demostración del problema 'elVagonetaL':
+\subsection{Demostración del problema 'elVagonetaL'}
 
 
 $ \\ P_c : Vago==0 \land n==|empYdes| \land i==1 \newline empYdes==[(empleadosL(this)_j,descansoMasLargo(this,empleadosL(this)_j)) | j \selec [0..|empleadosL(this)|) ]$
@@ -82,7 +82,7 @@ $ \\ P_c \land B \implica I :$ Por $P_c$ sabemos que $i==1$ y por $B$ sabemos qu
 $\newline$
 $\\ I \land \neg B \implica Q_c :$ Por $\neg B$ sabemos que $i\geq n$ y por $I$ sabemos que $i \leq n$, entonces $i==n$. También sabemos por $I$ que $n==|empYdes|$, lo que nos queda que $i==|empYdes|$. Por $I$ sabemos que $(\forall j \selec [0..i) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$ y por lo dicho recién sobre $i$, podemos decir que $(\forall j \selec [0..i) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$ es lo mismo que $(\forall j \selec [0..|empYdes|) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$; y entonces nos queda que $I \land \neg B \implica Q_c $
 $\newline$
-$\\ I \land cota < fv \implica \neg B :$ Esto es lo mismo que decir que si se cumple el invariante y $n-1 < i$ entonces se niega la guarda. Sabemos que $i \in [0..n]$
+$\\ I \land cota < fv \implica \neg B :$ Esto es lo mismo que decir que si se cumple el invariante y $n-1 < i$ entonces se niega la guarda. Sabemos que $i \in [0..n]$, lo que nos deja un único caso para que $n-1<i$, dados que son enteros, y es que sean iguales. Entonces, como $i==n$ y $n \nless n$, la guarda no se cumple.
 
 \end{document} %Terminé!
 
