@@ -291,8 +291,12 @@ void Local::guardar(std::ostream& os) const{
     os << "{ " << (char)ENCABEZADO_ARCHIVO << " "
        << _bebidas << " "
        << _sandwiches << " "
-       << _empleados << " "
-       << _ventas << " }";
+       << _empleados << " [ ";
+    for (auto &e : _ventas){
+        e.guardar(os);
+        os << " ";
+    }
+    os << "] }";
 }
 
 
