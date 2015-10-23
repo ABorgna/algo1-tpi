@@ -106,5 +106,26 @@ $\\ I \land \neg B \implica Q_c :$ Por $\neg B$ sabemos que $i \geq n$ y por $I$
 $\newline$
 $\\ I \land cota < fv \implica \neg B :$ Por $I$ sabemos que $i \in [0..n]$ y si $cota < fv$, esto quiere decir que $n-1 < i$, que es lo mismo que $n \leq i$ pues $n$ e $i$ son numeros naturales. Entonces si $i \leq n$ y $n \leq i$, resulta $i==n$ con lo cual negamos la $B$ pues este decía que $i<n$.
 
+\subsection{Demostración del problema 'agregarComboAlPedidoL'}
+
+
+$ \\ P_c : i==0 \land j==0 \land m==_ventas.size()\land n==pre(n) \land c==pre(c)$
+$\newline$
+$  Q_c : i==m \land p==ventasL(this)[j] \land numeroP(ventasL(this)[j]==n$
+$\newline$
+$  I : 0 \leq i \leq m \land ((p==ventasL(this)[j] \land numeroP(ventasL(this)[j]==n \land (\exists v \leftarrow ventas(this)) v.numeroP()==n) \lor (\forall k \leftarrow [0..i)) ventasL(this).numeroP \neq n) $
+$\newline$
+$ B: i < m $
+$\newline$
+$  cota : m-1$
+$\newline$
+$ fv: i $
+
+$ \\ P_c \land B \implica I :$ Por $P_c$ sabemos que $i==1$ y por $B$ sabemos que $i < n$, lo que implica $0 \leq i \leq n$. También, dado que $i==1$, lo que nos queda que $(\forall j \selec [0..i) ) 	snd(empleadosL(this)_j \leq snd(empleadosL(this)_{vago})$ es lo mismo que $(\forall j \selec [0] ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago}) $. Ahora, preguntar eso es lo mismo que preguntar $snd(empleadosL(this)_0) \leq snd(empleadosL(this)_{vago})$, y como sabemos por $P_c$ que $vago == 0$, nos queda $\newline snd(empleadosL(this)_0) \leq snd(empleadosL(this)_0)$; que es una verdad (en particular, son iguales). Entonces puedo decir que $ P_c \land B \Rightarrow I :$.
+$\newline$
+$\\ I \land \neg B \implica Q_c :$ Por $\neg B$ sabemos que $i\geq n$ y por $I$ sabemos que $i \leq n$, entonces $i==n$. También sabemos por $I$ que $n==|empYdes|$, lo que nos queda que $i==|empYdes|$. Por $I$ sabemos que $(\forall j \selec [0..i) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$ y por lo dicho recién sobre $i$, podemos decir que $(\forall j \selec [0..i) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$ es lo mismo que $(\forall j \selec [0..|empYdes|) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$; y entonces nos queda que $I \land \neg B \implica Q_c $
+$\newline$
+$\\ I \land cota < fv \implica \neg B :$ Esto es lo mismo que decir que si se cumple el invariante y $n-1 < i$ entonces se niega la guarda. Sabemos que $i \in [0..n]$, lo que nos deja un único caso para que $n-1<i$, dados que son enteros, y es que sean iguales. Entonces, como $i==n$ y $n \nless n$, la guarda no se cumple.
+
 \end{document} %Terminé!
 
