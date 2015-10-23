@@ -271,8 +271,6 @@ bool Local::unaVentaCadaUnoL() const{
     }
 }
 
-}
-
 Empleado Local::elVagonetaL() const{
     vector< pair<Empleado,int> > empYdes = empleadoYdescanso(this);
     int i = 1, n = empYdes.size();
