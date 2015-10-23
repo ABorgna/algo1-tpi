@@ -62,7 +62,27 @@
 
 \section{Demostraciones}
 
-todo
+
+Demostración del problema 'elVagonetaL':
+
+
+$ \\ P_c : Vago==0 \land n==|empYdes| \land i==1 \newline empYdes==[(empleadosL(this)_j,descansoMasLargo(this,empleadosL(this)_j)) | j \selec [0..|empleadosL(this)|) ]$
+$\newline$
+$  Q_c : (\forall j \selec [0..|empleadosL(this)|) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago}) \land n==|empYdes|$
+$\newline$
+$  I : 0 \leq i \leq n \land n==|empYdes| \land (\forall j \selec [0..i) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago}) $
+$\newline$
+$ B: i < n $
+$\newline$
+$  cota : n-1$
+$\newline$
+$ fv: i $
+
+$ \\ P_c \land B \implica I :$ Por $P_c$ sabemos que $i==1$ y por $B$ sabemos que $i < n$, lo que implica $0 \leq i \leq n$. También, dado que $i==1$, lo que nos queda que $(\forall j \selec [0..i) ) 	snd(empleadosL(this)_j \leq snd(empleadosL(this)_{vago})$ es lo mismo que $(\forall j \selec [0] ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago}) $. Ahora, preguntar eso es lo mismo que preguntar $snd(empleadosL(this)_0) \leq snd(empleadosL(this)_{vago})$, y como sabemos por $P_c$ que $vago == 0$, nos queda $\newline snd(empleadosL(this)_0) \leq snd(empleadosL(this)_0)$; que es una verdad (en particular, son iguales). Entonces puedo decir que $ P_c \land B \Rightarrow I :$.
+$\newline$
+$\\ I \land \neg B \implica Q_c :$ Por $\neg B$ sabemos que $i\geq n$ y por $I$ sabemos que $i \leq n$, entonces $i==n$. También sabemos por $I$ que $n==|empYdes|$, lo que nos queda que $i==|empYdes|$. Por $I$ sabemos que $(\forall j \selec [0..i) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$ y por lo dicho recién sobre $i$, podemos decir que $(\forall j \selec [0..i) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$ es lo mismo que $(\forall j \selec [0..|empYdes|) ) 	snd(empleadosL(this)_j) \leq snd(empleadosL(this)_{vago})$; y entonces nos queda que $I \land \neg B \implica Q_c $
+$\newline$
+$\\ I \land cota < fv \implica \neg B :$ Esto es lo mismo que decir que si se cumple el invariante y $n-1 < i$ entonces se niega la guarda. Sabemos que $i \in [0..n]$
 
 \end{document} %Terminé!
 
