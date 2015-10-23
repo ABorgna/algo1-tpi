@@ -239,9 +239,6 @@ bool Local::unaVentaCadaUnoL() const{
         }
         i++;
     }
-
-<<<<<<< HEAD
-    //CREO QUE HAY ALGUN EN ERROR EN EL CODIGO A PARTIR DE ACA PORQUE ANADA MAL EL CASO A B A C
     if (v.size()<=1)
     {
         return true;
@@ -249,7 +246,7 @@ bool Local::unaVentaCadaUnoL() const{
     if (v.size()>1)
     {
         bool estado=true;
-        for (int i=0;i<v.size());i++)
+        for (int i=0;i<v.size()-1);i++)
         {
             for (int j=i+1;j<v.size();j++)
             {
@@ -258,15 +255,6 @@ bool Local::unaVentaCadaUnoL() const{
                     if ((j+j-i<v.size())&&(!(v[j].atendioP()==v[j+j-i].atendioP())))
                         estado=false;
                 }
-=======
-    unsigned int nEmp = empleadosL().size();
-    bool estado=true;
-    cout << v;
-    if (v.size() > nEmp) {
-        for (unsigned int j=0; j<v.size()-nEmp; j++){
-            if (v[j].atendioP() != v[j+nEmp].atendioP()){
-                    estado=false;
->>>>>>> origin/master
             }
         }
     }
@@ -305,7 +293,7 @@ void Local::mostrar(std::ostream& os) const{
     os<<"Empleados del local y su energía: "<<empleadosYenegiaL(this)<<endl;
     os<<"Desempleados del local: "<<desempleadosL()<<endl;
     os<<"Ventas de local:" << endl;
-    
+
     for(auto p : _ventas){
         os << endl << p << endl;
     }
