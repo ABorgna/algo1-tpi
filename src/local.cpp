@@ -314,8 +314,8 @@ void Local::cargar (std::istream& is){
         throw std::invalid_argument("Encabezado inválido");
     }
     is >> _bebidas
-       >> _empleados
        >> _sandwiches
+       >> _empleados
        >> _ventas;
 
     is >> head; //Fin }
