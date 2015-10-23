@@ -272,8 +272,10 @@ bool Local::unaVentaCadaUnoL() const{
             {
                 if (v[i].atendioP()==v[j].atendioP())
                 {
-                    if ((j+j-i<v.size())&&(!(v[j].atendioP()==v[j+j-i].atendioP())))
+                    if ((j+1<v.size())&&(!(v[i+1].atendioP()==v[j+1].atendioP())))
+                    {
                         estado=false;
+                    }
                 }
             }
         }
