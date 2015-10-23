@@ -316,6 +316,9 @@ std::istream & operator>>(std::istream & is, Local & l){
 
 //Shhhh aca no pasa nada
 vector<Pedido> pedidosDelEmpleado(const Local *l,Empleado e){
+    int aix;
+    cout<<"llega hasta aca"<<endl;
+    cin>>aix;
     vector<Pedido> res = vector<Pedido>(1);
     for (auto &i : l->ventasL())
         if (i.atendioP()==e)
