@@ -202,12 +202,12 @@ void Local::anularPedidoL(int n){
 
 void Local::agregarComboAlPedidoL(const Combo c, int n){
     Pedido p;
-    int m = ventasL().size();
+    int m = _ventas.size();
     int i=0;
     int j=0;
     while (i<m){
-		if (ventasL()[i].numeroP()==n){
-			p=ventasL()[i];
+		if (_ventas[i].numeroP()==n){
+			p=_ventas[i];
 			j=i;
 			i=m;
 		}
@@ -215,11 +215,31 @@ void Local::agregarComboAlPedidoL(const Combo c, int n){
 			i++;
 		}
 	}
-	stockBebidasL(c.bebidaC())-1;
-    stockSandwichesL(c.sandwichC())-1;
-    energiaEmpleadoL(p.atendioP())-c.dificultadC();
-    p.combosP().push_back(c);
-	ventasL()[j]=p;
+	int b;
+	int s;
+	int e;
+	for(i=0;i<_bebidas.size();i++){
+		if (_bebidas[i].first == c.bebidaC()){
+			b=i;
+		}
+	}
+	for(i=0;i<_sandwiches.size();i++){
+		if (_sandwiches[i].first == c.sandwichC()){
+			s=i;
+		}
+	}
+	for(i=0;i<_empleados.size();i++){
+		if (_empleados[i].first == p.atendioP()){
+			e=i;
+		}
+	}
+	_bebidas[b].second--;
+	_sandwiches[s].second--;
+	_empleados[e].second-=c.dificultadC();
+	vector<Combo> cs = p.combosP();
+	cs.push_back(c);
+    p= Pedido(p.numeroP(), p.atendioP(), cs);
+	_ventas[j]=p;
 }
 
 bool Local::unaVentaCadaUnoL() const{
