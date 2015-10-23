@@ -1,5 +1,12 @@
 #include "pedido.h"
 #include <algorithm>
+vector<Combo> combosDelPedidoSinRep (const Pedido *p);
+vector<Combo> combosRepetidos (const Pedido *p);
+vector<Bebida> bebidasDelPedidoSinRep (const Pedido *p);
+vector<Hamburguesa> sandwichesDelPedidoSinRep (const Pedido *p);
+bool estaC(const Combo c, const vector<Combo> cs);
+void cambiarBebida (Combo &c, const vector<Bebida> bs);
+void cambiarSandwich (Combo &c, const vector<Hamburguesa> hs);
 
 Pedido::Pedido() : Pedido(1,"",vector<Combo>(1)){}
 
@@ -46,7 +53,41 @@ void  Pedido::cambiarBebidaComboP(const Bebida b, int i){
 }
 
 void  Pedido::elMezcladitoP(){
-    //Sofia    
+	vector<Combo> res = combosDelPedidoSinRep (this);
+	for(auto &i : combosRepetidos(this)){
+		int j=0;
+		int n = bebidasDelPedidoSinRep(this).size();
+		int m = sandwichesDelPedidoSinRep(this).size();
+		while (j<n){
+			int k=0;
+			Hamburguesa s=i.sandwichC();
+			while (k<m){
+				cambiarSandwich(i,sandwichesDelPedidoSinRep(this));
+					if (estaC(i,res)){
+						k++;
+					}
+					else{
+						res.push_back(i);
+						k=m;
+					}
+				}
+			
+			if (i.sandwichC()==s){
+				cambiarBebida(i,bebidasDelPedidoSinRep(this));
+				if (estaC(i,res)){
+					j++;
+				}
+				else{
+					res.push_back(i);
+					j=n;
+				}
+			}
+			else{
+				j=n;
+			}
+		}
+	}
+	_combos=res;
 }
 
 void Pedido::mostrar(std::ostream& os) const{
@@ -106,6 +147,128 @@ int countSandwichesP(const Pedido& p, Hamburguesa s){
     return count;
 }
 
+bool estaC(const Combo c, const vector<Combo> cs){
+int i = 0;
+int n = cs.size();
+while (i < n && (cs[i].bebidaC() != c.bebidaC() || cs[i].sandwichC() != c.sandwichC())){
+i = i + 1;
+}
+return i < n;
+}
+
+bool estaB(const Bebida b, const vector<Bebida> bs){
+int i = 0;
+int n = bs.size();
+while (i < n && bs[i] != b){
+i = i + 1;
+}
+return i < n;
+}
+
+bool estaS(const Hamburguesa h, const vector<Hamburguesa> hs){
+int i = 0;
+int n = hs.size();
+while (i < n && hs[i] != h){
+i = i + 1;
+}
+return i < n;
+}
+
+vector<Bebida> bebidasDelPedido (const Pedido *p){
+    vector<Bebida> res;
+    res.reserve(p->combosP().size());
+    for (auto &i : p->combosP()){
+		res.push_back(i.bebidaC());
+        }
+    return res;
+}
+
+vector<Bebida> bebidasDelPedidoSinRep (const Pedido *p){
+    vector<Bebida> res;
+    res.reserve(bebidasDelPedido(p).size());
+    for (auto &i : bebidasDelPedido(p)){
+		if (!estaB(i,res)){
+		res.push_back(i);
+        }
+	}
+    return res;
+}
+
+vector<Hamburguesa> sandwichesDelPedido (const Pedido *p){
+    vector<Hamburguesa> res;
+    res.reserve(p->combosP().size());
+    for (auto &i : p->combosP()){
+		res.push_back(i.sandwichC());
+        }
+    return res;
+}
+
+vector<Hamburguesa> sandwichesDelPedidoSinRep (const Pedido *p){
+    vector<Hamburguesa> res;
+    res.reserve(sandwichesDelPedido(p).size());
+    for (auto &i : sandwichesDelPedido(p)){
+		if (!estaS(i,res)){
+		res.push_back(i);
+        }
+	}
+    return res;
+}
+
+vector<Combo> combosDelPedidoSinRep (const Pedido *p){
+    vector<Combo> res;
+    res.reserve(p->combosP().size());
+    for (auto &i : p->combosP()){
+		if (!estaC(i,res)){
+		res.push_back(i);
+        }
+	}
+    return res;
+}
+
+vector<Combo> combosRepetidos (const Pedido *p){
+    vector<Combo> res;
+    vector<Combo> aux = p->combosP();
+    int n = p->combosP().size();
+    int i =0;
+    while (i<n){
+		aux.erase(aux.begin()+i);
+		if (estaC(p->combosP()[i],aux)){
+		res.push_back(p->combosP()[i]);
+		i++;
+		}
+        else{
+			i++;
+        }
+	}
+    return res;
+}
+
+void cambiarBebida (Combo &c, const vector<Bebida> bs){
+	int n = bs.size();
+	int i = 0;
+	while (i<n)
+		if (c.bebidaC()==bs[i]){
+			c= Combo(bs[(i+1) % n],c.sandwichC(), c.dificultadC()); 
+			i=n;
+		}
+		else{
+			i++;
+		}
+}
+
+void cambiarSandwich (Combo &c, const vector<Hamburguesa> hs){
+	int n = hs.size();
+	int i = 0;
+	while (i<n)
+		if (c.sandwichC()==hs[i]){
+			c= Combo(c.bebidaC(),hs[(i+1) % n], c.dificultadC()); 
+			i=n;
+		}
+		else{
+			i++;
+		}
+}
+
 std::ostream & operator<<(std::ostream & os,const Pedido& p){
     p.mostrar(os);
     return os;
@@ -115,4 +278,5 @@ std::istream & operator>>(std::istream & is, Pedido & p){
     p.cargar(is);
     return is;
 }
+
 
