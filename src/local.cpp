@@ -280,11 +280,15 @@ void Local::guardar(std::ostream& os) const{
 
 
 void Local::mostrar(std::ostream& os) const{
-     os<<"Bebidas del local y su stock: "<<_bebidas<<endl;
-     os<<"Sandwiches del local y su stock: "<<_sandwiches<<endl;
-     os<<"Empleados del local y su energía: "<<empleadosYenegiaL(this)<<endl;
-     os<<"Desempleados del local: "<<desempleadosL()<<endl;
-     os<<"Ventas de local: "<<ventasL();
+    os<<"Bebidas del local y su stock: "<<_bebidas<<endl;
+    os<<"Sandwiches del local y su stock: "<<_sandwiches<<endl;
+    os<<"Empleados del local y su energía: "<<empleadosYenegiaL(this)<<endl;
+    os<<"Desempleados del local: "<<desempleadosL()<<endl;
+    os<<"Ventas de local:" << endl;
+    
+    for(auto p : _ventas){
+        os << endl << p << endl;
+    }
 }
 
 void Local::cargar (std::istream& is){
