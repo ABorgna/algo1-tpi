@@ -226,22 +226,18 @@ bool Local::unaVentaCadaUnoL() const{
     vector<Pedido> v=_ventas;
     sort(v. begin(), v. end(), [] (Pedido p1, Pedido p2) {return p1.numeroP() < p2.numeroP();});
     int i=0;
-    while(i<v.size())
-    {
-        i++;
+    while(i<v.size()) {
         bool pertenece=false;
-        for (int j=0;j<_empleados.size();j++)
-        {
-            if ((v[i].atendioP()==_empleados[j].first)&& (_empleados[j].second>=0))
-            {
+        for (int j=0;j<_empleados.size();j++) {
+            if ((v[i].atendioP()==_empleados[j].first)&& (_empleados[j].second>=0)) {
                     pertenece=true;
             }
         }
-        if (pertenece==false)
-        {
+        if (pertenece==false) {
             v.erase(v.begin()+i);
             i--;
         }
+        i++;
     }
 
     //CREO QUE HAY ALGUN EN ERROR EN EL CODIGO A PARTIR DE ACA PORQUE ANADA MAL EL CASO A B A C
@@ -273,6 +269,8 @@ bool Local::unaVentaCadaUnoL() const{
             return estado;
         }
     }
+}
+
 }
 
 Empleado Local::elVagonetaL() const{
