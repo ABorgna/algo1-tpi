@@ -250,10 +250,7 @@ bool Local::unaVentaCadaUnoL() const{
             }
         }
     }
-<<<<<<< HEAD
     return estado;
-=======
->>>>>>> 9446e24ca75dd1379932e54f15b7b8d0103771a8
 }
 
 Empleado Local::elVagonetaL() const{
