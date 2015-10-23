@@ -53,6 +53,7 @@ void  Pedido::cambiarBebidaComboP(const Bebida b, int i){
 }
 
 void  Pedido::elMezcladitoP(){
+	int t = combosP().size();
 	vector<Combo> res = combosDelPedidoSinRep (this);
 	for(auto &i : combosRepetidos(this)){
 		int j=0;
@@ -87,7 +88,10 @@ void  Pedido::elMezcladitoP(){
 			}
 		}
 	}
-	_combos=res;
+	int a;
+	for(a=0;a<t;a++){
+	_combos[a]=res[a];
+	}
 }
 
 void Pedido::mostrar(std::ostream& os) const{
