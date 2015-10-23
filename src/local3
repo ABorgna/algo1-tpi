@@ -1,5 +1,1 @@
-{ L [ ( AguaConGags 1 ) ( FalsaNaranja 19 ) ( PestiCola 20 ) ] [ ( BigMacabra 1 ) ( CukiQueFresco 19 ) ( McPato 30 ) ] [ ( Leu 100 ) ( Marta 80 ) ( Josete 100 ) ] [ Numero de pedido: 1
-Empleado que atendio el pedido: Marta
-Los combos que integran el pedido son: 
-Sandwich: CukiQueFresco Bebida: FalsaNaranja Dificultad: 20
- ] }
+{ L [ ( PestiCola 34 ) ( FalsaNaranja 22 ) ( SeVeNada 12 ) ] [ ( McGyver 5 ) ( CukiQueFresco 7 ) ( McPato 6 ) ( BigMacabra 10 ) ] [ ( Ronald_Red 67 ) ( Plin_Plin -23 ) ( Pinon_Fijo 75 ) ] [ { P 123 Ronald_Red [ { C PestiCola McGyver 1 } ] } { P 124 Pinon_Fijo [ { C FalsaNaranja CukiQueFresco 2 } { C SeVeNada McPato 3 } ] } ] }
