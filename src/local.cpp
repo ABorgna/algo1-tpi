@@ -247,30 +247,20 @@ bool Local::unaVentaCadaUnoL() const{
     }
     if (v.size()>1)
     {
-        int i=1;
-        while ((i<v.size())&&(!(v[0].atendioP()==v[i].atendioP())))
-        {
-            i++;
-        }
-        if (i==v.size())
-        {
-            return true;
-        }
         bool estado=true;
-        if (i<v.size())
+        for (int i=0;i<v.size());i++)
         {
-            for (int j=0;j<v.size()-i;j++)
+            for (int j=i+1;j<v.size();j++)
             {
-                if (!(v[j].atendioP()==v[j+i].atendioP()))
+                if (v[i].atendioP()==v[j].atendioP())
                 {
+                    if ((j+j-i<v.size())&&(!(v[j].atendioP()==v[j+j-i].atendioP())))
                         estado=false;
                 }
             }
-            return estado;
         }
     }
-}
-
+    return estado;
 }
 
 Empleado Local::elVagonetaL() const{
