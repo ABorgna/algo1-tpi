@@ -320,9 +320,6 @@ std::istream & operator>>(std::istream & is, Local & l){
 
 //Shhhh aca no pasa nada
 vector<Pedido> pedidosDelEmpleado(const Local *l,Empleado e){
-    int aix;
-    cout<<"llega hasta aca"<<endl;
-    cin>>aix;
     vector<Pedido> res = vector<Pedido>(1);
     for (auto &i : l->ventasL())
         if (i.atendioP()==e)
@@ -332,6 +329,8 @@ vector<Pedido> pedidosDelEmpleado(const Local *l,Empleado e){
 
 int maxDescansoEmpleado(const Local *l,Empleado e){
     vector<Pedido> pedidos = pedidosDelEmpleado(l,e);
+    if (pedidos.size()==0)
+        return l->ventasL().size();
     int maxDescanso = pedidos[0].numeroP() - l->ventasL()[0].numeroP();
     for (int i = 1; i < pedidos.size(); i++)
         maxDescanso = max(pedidos[i].numeroP() - pedidos[i-1].numeroP(),maxDescanso);
