@@ -49,10 +49,8 @@ void Combo::cargar (std::istream& is){
     }
     is >> _bebida
        >> _sandwich
-       >> _dificultad;
-    cout<<"se quedo con:"<<_sandwich<<endl;
-    cin>>head;
-    is >> head; //Fin }
+       >> _dificultad
+       >> head; //Fin }
 }
 
 bool Combo::operator==(const Combo& otroCombo) const{
