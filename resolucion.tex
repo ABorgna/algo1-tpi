@@ -7,6 +7,7 @@
 \usepackage{listings}
 \usepackage{color}
 \usepackage{caption}
+\usepackage{amssymb}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -118,11 +119,12 @@ $\\ I \land cota < fv \implica \neg B $:
 \subsection{Demostración del problema 'candidatosAEmpleadosDelMesL'}
 
 
-$ \\ P_c : emp==empleadoConMasVentas(this) \land n==|emp| \land i==0 \land res==[]$
+$ \\ P_c : emp==empleadoConMasVentas(this) \land n==|emp| \land i==0 \land res==[] \\ $
+    \indent $\land \: maxCombos = |combosVendidosPorElEmpleado(this,empleadosConMasCombos(this,emp)_0)| $
 $\newline$
-$  Q_c : i==n \land (\forall j \selec [0..n) ) |combosDelEmpleado(this,emp[j])|==maxCantCombos(this) \Leftrightarrow emp[j] \in res$
+$  Q_c : i==n \land res == [e \: | \: e \selec [0..|emp|), |combosVendidosPorElEmpleado(this,e)| == maxCombos] $
 $\newline$
-$  I : 0 \leq i \leq n \land (\forall j \selec [0..i) ) ((|combosDelEmpleado(this,emp[j])|==maxCantCombos(this) \Rightarrow emp[j] \in res) \land (|combosDelEmpleado(this,emp[j])| \neq maxCantCombos(this) \Rightarrow emp[j] \not\in res))$   
+$  I : 0 \leq i \leq n \land res == [e \: | \: e \selec [0..i), |combosVendidosPorElEmpleado(this,e)| == maxCombos] $
 $\newline$
 $ B: i < n $
 $\newline$
@@ -130,11 +132,30 @@ $  cota : n-1$
 $\newline$
 $ fv: i $
 
-$ \\ P_c \land B \implica I :$ Por $P_c$ sabemos que $i==0$  por lo tanto vale que $0 \leq i \leq n$ pues $0 \leq n$ por ser $n$ la longitud de una lista. También, dado que $i==0$, $[0..i)$ es lo mismo que $[]$, entonces $(\forall j \selec [0..i) ) ((|combosDelEmpleado(this,emp[j])|==maxCantCombos(this) \Rightarrow emp[j] \in res) \land (|combosDelEmpleado(this,emp[j])| \neq maxCantCombos(this) \Rightarrow emp[j] \not\in res))$ va a ser cierto pues estoy recorriendo una lista vacía. Luego, puedo decir que $ P_c \land B \Rightarrow I :$.
-$\newline$
-$\\ I \land \neg B \implica Q_c :$ Por $\neg B$ sabemos que $i \geq n$ y por $I$ sabemos que $i \leq n$, entonces $i==n$. Si $i==n$, por $I$, $(\forall j \selec [0..n) ) ((|combosDelEmpleado(this,emp[j])|==maxCantCombos(this) \Rightarrow emp[j] \in res) \land (|combosDelEmpleado(this,emp[j])| \newline \neq maxCantCombos(this) \Rightarrow emp[j] \not\in res))$. Pero como $(P \Rightarrow Q) \land (\neg P \Rightarrow \neg Q)$ es lo mismo que $(P \Rightarrow Q) \land (Q \Rightarrow P)$ (ya que $\neg P \Rightarrow \neg Q$ es lo mismo que $\neg  \neq Q \Rightarrow \neg  \neq P$ que es lo mismo que $Q \Rightarrow P$), luego tenemos que $(\forall j \selec [0..n) ) ((|combosDelEmpleado(this,emp[j])|==maxCantCombos(this) \Rightarrow emp[j] \in res) \land (|combosDelEmpleado(this,emp[j])| \newline == maxCantCombos(this) \Leftarrow emp[j] \in res))$, es decir $(\forall j \selec [0..n) ) |combosDelEmpleado(this,emp[j])|== \newline maxCantCombos(this) \Leftrightarrow emp[j] \in res$
-$\newline$
-$\\ I \land cota < fv \implica \neg B :$ Por $I$ sabemos que $i \in [0..n]$ y si $cota < fv$, esto quiere decir que $n-1 < i$, que es lo mismo que $n \leq i$ pues $n$ e $i$ son numeros naturales. Entonces si $i \leq n$ y $n \leq i$, resulta $i==n$ con lo cual negamos la $B$ pues este decía que $i<n$.
+$ \\ P_c \land B \implica I $:
+
+    Por $P_c$ sabemos que $i==0$ por lo tanto vale que $0 \leq i \leq n$ pues $0 \leq n$ por ser $n$ la longitud de una lista. 
+
+    También, dado que $i==0$, $[0..i)$ es lo mismo que $[]$, entonces 
+        $$ [\: e \: | \: e \selec [0..i), |combosVendidosPorElEmpleado(this,e)| == maxCombos \:] == []$$
+    \indent que es igual a $res$ por $P_c$. Luego, puedo decir que $ P_c \land B \Rightarrow I \therefore $
+
+
+$\\ I \land \neg B \implica Q_c $: 
+
+    Por $\neg B$ sabemos que $i \geq n$ y por $I$ sabemos que $i \leq n$, entonces $i==n$.
+
+    De $I$ sabemos que
+        $$ res == [e \: | \: e \selec [0..i), |combosVendidosPorElEmpleado(this,e)| == maxCombos] $$
+    \indent y por lo dicho recién sobre $i$, como $n == |emp|$ podemos decir que
+        $$ res == [e \: | \: e \selec [0..|emp|), |combosVendidosPorElEmpleado(this,e)| == maxCombos] $$
+    \indent y entonces nos queda que $I \land \neg B \implica Q_c $
+
+$\\ I \land cota < fv \implica \neg B $:
+
+    Por $I$ sabemos que $i \in [0..n]$ y si $cota < fv$, esto quiere decir que $n-1 < i$, que es lo mismo que $n \leq i$ pues $n$ e $i$ son numeros naturales.
+
+    Entonces si $i \leq n$ y $n \leq i$, resulta $i==n$ con lo cual negamos la $B$ pues este decía que $i<n$.
 
 \subsection{Demostración del problema 'agregarComboAlPedidoL'}
 

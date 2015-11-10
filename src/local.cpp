@@ -114,8 +114,9 @@ vector<Empleado> Local::candidatosAEmpleadosDelMesL() const{
 	vector<Empleado> emp = empleadosConMasVentas(this);
 	int n = emp.size();
     int i = 0;
+    int maxCombos = maxCantCombos(this);
 	while (i<n){
-		if (combosDelEmpleado(this,emp[i]).size() == maxCantCombos(this)){
+		if (combosDelEmpleado(this,emp[i]).size() == maxCombos){
 		res.push_back(emp[i]);
 		i++;
 		}
