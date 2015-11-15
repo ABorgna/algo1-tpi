@@ -202,7 +202,7 @@ void Local::anularPedidoL(int n){
 }
 
 void Local::agregarComboAlPedidoL(const Combo c, int n){
-    Pedido p;
+    Pedido p = _ventas[0];
     int m = _ventas.size();
     int i=0;
     int j=0;
