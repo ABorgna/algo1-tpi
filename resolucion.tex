@@ -162,12 +162,12 @@ $\\ I \land cota < fv \implica \neg B $:
 \subsection{Demostración del problema 'agregarComboAlPedidoL'}
 
 
-$ \\ P_c : i==0 \land j==0 \land p==ventasL(this)_0 \land m==|ventasL(this)|\land n==pre(n) \land c==pre(c)$
+$ \\ P_c : i==0 \land j==0 \land p==ventas(this)_0 \land m==|ventas(this)|\land n==pre(n) \land c==pre(c)$
 $\newline$
-$  Q_c : i==m \land p==ventasL(this)_j \land numeroP(ventasL(this))_j ==n$
+$  Q_c : i==m \land p==ventas(this)_j \land numero(ventas(this))_j ==n$
 $\newline$
-$  I : 0 \leq i \leq m \land ((p==ventasL(this)_j \land numeroP(ventasL(this))_j == n \land (\exists v \leftarrow ventas(this)) numeroP(v)==n) \\
-    \indent \lor (\forall k \leftarrow [0..i)) numeroP(ventasL(this)_k ) \neq n) $
+$  I : 0 \leq i \leq m \land ((p==ventas(this)_j \land numero(ventas(this))_j == n \land (\exists v \leftarrow ventas(this)) numero(v)==n) \\
+    \indent \lor (\forall k \leftarrow [0..i)) numero(ventas(this)_k ) \neq n) $
 $\newline$
 $ B: i < m $
 $\newline$
@@ -179,10 +179,10 @@ $ \\ P_c \land B \implica I $:
 
     Por $P_c$ sabemos que $i==0$ y por $B$ sabemos que $i < m$, lo que implica $0 \leq i \leq m$.
 
-    Ahora, supongamos que con $i==0$ se cumple que $numeroP(ventasL(this)_i )==n$, $(p==ventasL(this)_j$ es verdad por $P_c$ que nos dice que $j==0$ y que $p==ventasL(this)_0$.
-    También es verdad que $numeroP(ventasL(this))_j ==n$ porque habíamos supuesto que $numeroP(ventasL(this)_i )==n$ con $i==0$ y sabemos por $P_c$ que $j==0$, y $(\exists v \leftarrow ventas(this)) numeroP(v)==n$ es trivial porque en la anterior afirmación aseguramos que existía con 0; lo que nos basta para asegurar la veracidad del OR.
+    Ahora, supongamos que con $i==0$ se cumple que $numero(ventas(this)_i )==n$, $(p==ventas(this)_j$ es verdad por $P_c$ que nos dice que $j==0$ y que $p==ventas(this)_0$.
+    También es verdad que $numero(ventas(this))_j ==n$ porque habíamos supuesto que $numero(ventas(this)_i )==n$ con $i==0$ y sabemos por $P_c$ que $j==0$, y $(\exists v \leftarrow ventas(this)) numero(v)==n$ es trivial porque en la anterior afirmación aseguramos que existía con 0; lo que nos basta para asegurar la veracidad del OR.
 
-    Ahora supongamos que no se cumple con $i==0$, entonces es necesario que $(\forall k \leftarrow [0..i)) numeroP(ventasL(this)_k ) \neq n)$ sea verdad; como $i==0$ por $P_c$, es lo mismo que preguntar si $numeroP(ventasL(this)_0 ) \neq n$, que es verdad por que lo habíamos supuesto, lo que nos permite asegurar la veracidad del OR.
+    Ahora supongamos que no se cumple con $i==0$, entonces es necesario que $(\forall k \leftarrow [0..i)) numero(ventas(this)_k ) \neq n)$ sea verdad; como $i==0$ por $P_c$, es lo mismo que preguntar si $numero(ventas(this)_0 ) \neq n$, que es verdad por que lo habíamos supuesto, lo que nos permite asegurar la veracidad del OR.
 
     Entonces, como el OR se cumple en ambos casos y $0 \leq i \leq m$, podemos decir que $P_c \land B \implica I$.
 
@@ -190,7 +190,7 @@ $\\ I \land \neg B \implica Q_c $:
 
     Por $\neg B$ sabemos que $i\geq m$ y por $I$ sabemos que $i \leq m$, entonces $i==m$.
 
-    Considerando lo anterior nos queda que $(\forall k \leftarrow [0..i)) numeroP(ventasL(this)_k ) \neq n)$ es lo mismo que negar que existe alguno en toda la secuencia que cumpla $numeroP(ventasL(this)_alguno ) == n$, pero eso es imposible dado que es uno de los requiere del problema. Entonces no queda otra que $((p==ventasL(this)_j \land numeroP(ventasL(this))_j == n \land (\exists v \leftarrow ventas(this)) numeroP(v)==n)$ sea verdad, en particular, nos importa que $((p==ventasL(this)_j \land numeroP(ventasL(this))_j == n$ sea verdad.
+    Considerando lo anterior nos queda que $(\forall k \leftarrow [0..i)) numero(ventas(this)_k ) \neq n)$ es lo mismo que negar que existe alguno en toda la secuencia que cumpla $numero(ventas(this)_alguno ) == n$, pero eso es imposible dado que es uno de los requiere del problema. Entonces no queda otra que $((p==ventas(this)_j \land numero(ventas(this))_j == n \land (\exists v \leftarrow ventas(this)) numero(v)==n)$ sea verdad, en particular, nos importa que $((p==ventas(this)_j \land numero(ventas(this))_j == n$ sea verdad.
 
     Entonces nos queda que $I \land \neg B \implica Q_c$.
 
