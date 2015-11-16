@@ -182,8 +182,8 @@ $ \\ P_c \land B \implica I $:
     Ahora, supongamos que con $i==0$ se cumple que $numero(ventas(this)_i )==n$, $(p==ventas(this)_j$ es verdad por $P_c$ que nos dice que $j==0$ y que $p==ventas(this)_0$.
     También es verdad que $numero(ventas(this))_j ==n$ porque habíamos supuesto que $numero(ventas(this)_i )==n$ con $i==0$ y sabemos por $P_c$ que $j==0$, y $(\exists v \leftarrow ventas(this)) numero(v)==n$ es trivial porque en la anterior afirmación aseguramos que existía con 0; lo que nos basta para asegurar la veracidad del OR.
 
-    Ahora supongamos que no se cumple con $i==0$, entonces es necesario que $(\forall k \leftarrow [0..i)) numero(ventas(this)_k ) \neq n)$ sea verdad; como $i==0$ por $P_c$, es lo mismo que preguntar si $numero(ventas(this)_0 ) \neq n$, que es verdad por que lo habíamos supuesto, lo que nos permite asegurar la veracidad del OR.
-
+	Ahora supongamos que no se cumple con $i==0$, entonces es necesario que $(\forall k \leftarrow [0..i)) numero(ventas(this)_k ) \neq n)$ sea verdad; como $i==0$ por $P_c$, $[0..i)$ resulta ser la lista vacía, luego $(\forall k \leftarrow [0..i)) numero(ventas(this)_k ) \neq n)$ es verdadero, lo que nos permite asegurar la veracidad del OR.    
+    
     Entonces, como el OR se cumple en ambos casos y $0 \leq i \leq m$, podemos decir que $P_c \land B \implica I$.
 
 $\\ I \land \neg B \implica Q_c $:
